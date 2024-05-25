@@ -1,0 +1,117 @@
+@font-face {
+	font-family:MyriadPro-Regular;
+	src:url('/public/hoangha/general/fonts/MyriadPro-Regular.eot?');
+  	src:url('/public/hoangha/general/fonts/MyriadPro-Regular.eot?#iefix') format('embedded-opentype'),
+      url('/public/hoangha/general/fonts/MyriadPro-Regular.woff2') format('woff2'),
+      url('/public/hoangha/general/fonts/MyriadPro-Regular.woff') format('woff'),
+      url('/public/hoangha/general/fonts/MyriadPro-Regular.ttf') format('truetype'),
+      url('/public/hoangha/general/fonts/MyriadPro-Regular.svg#MyriadPro-Regular') format('svg');
+}
+body{
+	margin:0;
+	font-family:MyriadPro-Regular;
+}
+.app ul li a.hoveractive .icon-job
+{
+	background: url("/public/hoangha/general/img/icon-tuyendung-hover.png") no-repeat scroll center top;
+}
+.content_job{
+	    max-height: 230px;
+    overflow-x: scroll;
+}
+.content .tuyendung h1{
+	text-align: center;
+	color: #ffc500;
+	font-size: 40px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+.content .career{
+	width: 95%;
+	margin: auto;
+	margin-bottom: 50px;
+	padding-bottom: 2%;
+	overflow: hidden;
+	max-width: 1285px;
+}
+.avatar_tuyendung
+{
+	width: 42%;
+	float: left;
+	padding-left: 2px;
+    padding-top: 15px;
+    text-align: center;
+    margin: 0 auto;
+}
+.avatar_tuyendung img{
+	text-align: center;
+	display: block;
+	margin: 0 auto;
+	width: 490px;
+	height: 407px;
+}
+.content .career .info {
+	float: right;
+    width: 56%;
+    margin-top: 20px;
+}
+.content .career .info h3{
+	font-size: 25px;
+	color: #231f20;
+	padding-bottom: 30px;
+	font-family: Arial, Tahoma;
+}
+
+
+.content .career .info p{
+	color: #231f20;
+}
+
+.clear{
+	clear: both;
+	content: "";
+	display: table;
+}
+.info table
+{
+	width: 95%;
+	max-width: 100%;
+	border-color: #ccc;
+	font-family: Arial, Tahoma;
+	font-size: 14px;
+}
+.info table td
+{
+	padding: 10px;
+	font-family: Arial, Tahoma;
+}
+@media only screen and (max-width: 800px)
+{
+	.content .tuyendung h1
+	{
+		font-size: 6vw;
+	}
+	.avatar_tuyendung
+	{
+		width: 100%;
+	}
+	.content .career .info
+	{
+		width: 100%;
+	}
+	.info table
+	{
+		width: 100%;
+	}
+	.content .career .info h3
+	{
+		font-size: 4vw;
+	}
+	.avatar_tuyendung img
+	{
+		width: 100%;
+		height: auto;
+	}
+}

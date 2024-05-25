@@ -1,0 +1,108 @@
+block mycss
+  -if(stylepage)
+    link(rel='stylesheet', type='text/css', href='/public/hoangha/#{stylepage}/index.css')
+    
+block myjs
+  -if(stylepage)
+    script(type='text/javascript', src='/public/hoangha/#{stylepage}/index.js')
+extends ../../../layout/default
+block contents
+    .content
+      section.tuyendung
+        nav.container.box_breadcrumd
+          ol.breadcrumb
+            li.breadcrumb-item
+              a(href='#', title='#') #{i18n.__("HOME")}
+         
+            li.breadcrumb-item
+              a(href='#', title='#') #{i18n.__("NEWS")}
+          
+            li.breadcrumb-item.active #{news.name}
+          -if(news.my_created_at)
+            span.time #{news.my_created_at}
+          -else
+            span.time #{my_date.toString()}
+ 
+        article.datanews.container
+          h2.titleh2(style='font-size: 48px; text-align: left; display: inline-block; width: 70%; color: #414042;')
+           | #{news.name}
+          h5(style='font-size: 16px; font-weight: 400; text-align: right;float: right; width: 30%; color: #414042;font-family: myriadregular, Arial, Tahoma;')
+            | #{news.description}
+          p(style='text-align: center; ')
+            img(style='text-align: center; margin: 20px auto; width: 100%; overflow: hidden;', src='/public/upload/news/#{news.picture_main}', alt='#{news.name}')
+        
+          div#news_content(style='width: 71%; float: left; text-align: justify;')
+            | !{news.contents}
+            div()
+              |#{news.picture_title}
+            div
+                a(href='#{Shared_url_facebook}' target="_blank") 
+                  img(src='/public/hoangha/general/img/facebook_social.png' style='width:30px')
+                a(href='#{Shared_url}' target="_blank") 
+                  img(src='/public/hoangha/general/img/twitter_social.png' style='width:30px')
+          div(style='width: 20%; float: right; text-align: right;')
+            -if(news.slogan)
+              p.slogan(style='font-size: 30px; text-align: right; color: #231f20; font-weight: bold;line-height: 42px;')
+                | #{news.slogan}
+          p(style='width: 100%; overflow: hidden;font-size:13px;text-align: right; border-bottom: 1px solid #414042;')
+            i 
+        -if(other_news)
+          .boxtintuc.boxtintucsame.container
+            #boxslidepro.content_highlight.owl-carousel.owl-theme
+              each n in other_news
+                article.items
+                  .avatarnews
+                    a(href='/tin-tuc/#{n.alias}', title='#{n.name}')
+                      img(src='/public/upload/news/#{n.picture}', alt='#{n.name}')
+             
+                  .infonews
+                    h3
+                      a(href='/tin-tuc/#{n.alias}', title='#{n.name}') #{n.name}
+                    p #{n.description}
+              
+          nav.box_breadcrumd.container.box_breadcrumdbottom
+            ol.breadcrumb
+              li.breadcrumb-item.active &nbsp;
+            | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+            a.time(href='/tin-tuc', title='tin tuc', target='_blank') Xem th&ecirc;m
+        | &#x9;&#x9;&#x9;&#x9;
+        script.
+          jQuery(document).ready(function($) {
+          var slideshowpro =$('#boxslidepro');
+          slideshowpro.owlCarousel({
+          items : 4,
+          margin: 20,
+          slideSpeed : 3000,
+          autoplaySpeed: 1000,
+          nav: true,
+          dots: false,
+          loop: false,
+          responsive: {
+          0: {
+          items: 2
+          },
+          480: {
+          items: 2
+          },
+          600: {
+          items: 2
+          },
+          750: {
+          items: 2
+          },
+          960: {
+          items: 2
+          },
+          1170: {
+          items: 4
+          },
+          1300: {
+          items: 4
+          }
+          }
+          });
+          });
+      | &#x9;&#x9;&#x9;
+      .clear
+
+

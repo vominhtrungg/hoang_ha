@@ -1,0 +1,88 @@
+block mycss
+  -if(stylepage)
+    link(rel='stylesheet', type='text/css', href='/public/hoangha/#{stylepage}/css/index.css')
+block myjs
+  -if(stylepage)
+    script(type='text/javascript', src='/public/hoangha/#{stylepage}/js/index.js')
+extends ../../../layout/default
+block contents
+  section.content
+        .duan
+          h2.title.font-face #{i18n.__("OTHERPROJECT")}
+          .boxhinhanh
+            -for(var j=0;j<4;j++)
+              -var pro=project[j]
+              -var d=j+1
+                div(class='hinhanh hinhanh#{d}')
+                  a.boxlazy(href='#{pro.links}', title='#{pro.name}')
+                    img.image.lazyload_not(data-src='/public/upload/project/#{pro.picture}', src='/public/hoangha/general/img/loader.gif', alt='#{pro.name}')
+                  .overlay
+                    .text
+                      a(href='/san-pham/name-card', title='NAME CARD')
+                        h3 #{pro.name}
+             
+          .boxhinhanh2
+              -for(var j=4;j<7;j++)
+                -var pro=project[j]
+                -var d=j+1
+              
+                  div(class='hinhanh hinhanh#{d}')
+                    a.boxlazy(href='#{pro.links}', title='#{pro.name}')
+                      img.image.lazyload_not(data-src='/public/upload/project/#{pro.picture}', alt='#{pro.name}', src='/public/hoangha/general/img/loader.gif')
+                    .overlay
+                      .text
+                        a(href='#{pro.links}', title='#{pro.name}')
+                          h3 #{pro.name}
+            
+         
+          .boxhinhanh3
+            .boxhinhanh3-1
+              -for(var j=7;j<9;j++)
+                -var pro=project[j]
+                -var d=j+1
+                  div(class='hinhanh hinhanh#{d}')
+                    a.boxlazy(href='#{pro.links}', title='#{pro.name}')
+                      img.image.lazyload_not(data-src='/public/upload/project/#{pro.picture}', src='/public/hoangha/general/img/loader.gif', alt='#{pro.name}')
+                    .overlay
+                      .text
+                        a(href='#{pro.links}', title='#{pro.name}')
+                          h3 #{pro.name}
+                
+            .boxhinhanh3-2
+               -for(var j=9;j<11;j++)
+                -var pro=project[j]
+                -var d=j+1
+                  div(class='hinhanh hinhanh#{d}')
+                    a.boxlazy(href='#{pro.links}', title='#{pro.name}')
+                      img.image.lazyload_not(data-src='/public/upload/project/#{pro.picture}', src='/public/hoangha/general/img/loader.gif', alt='#{pro.name}')
+                    .overlay
+                      .text
+                        a(href='#{pro.links}', title='#{pro.name}')
+                          h3 #{pro.name}
+            
+            .boxhinhanh3-3
+               -for(var j=11;j<12;j++)
+                -var pro=project[j]
+                  .hinhanh.hinhanh12
+                    a.boxlazy(href='#{pro.links}', title='#{pro.name}')
+                      img.image.lazyload_not(data-src='/public/upload/project/#{pro.picture}', src='/public/hoangha/general/img/loader.gif', alt='#{pro.name}')
+                    .overlay
+                      .text
+                        a(href='#{pro.links}', title='#{pro.name}')
+                          h3 #{pro.name}
+
+        .clear
+        -if(supplier)
+          .khachhang
+            h2.font-face #{i18n.__("CUSTOMER")}
+            .box_khachhang.boxlazy
+              //-img.lazyload(data-src='/public/upload/supplier/#{supplier.picture}', src='/public/hoangha/home/img/loader.gif', alt='#{supplier.name}')
+              div.home_item.item_bottom
+                img.lazyload(data-src='/public/hoangha/general/img/bottom.jpg', src='/public/hoangha/home/img/loader.gif', alt='#')
+              div.js-parallax.home_item.item_mid(data-parallax='{"y": 40,"smoothness": 1,"x":15,"rotateX":20}')
+                img.lazyload(data-src='/public/hoangha/general/img/mid.png', src='/public/hoangha/home/img/loader.gif', alt='#')
+              div.js-parallax.home_item.item_top(data-parallax='{"y": 40,"smoothness": 1,"x":-15,"rotateX":25}')
+                img.lazyload(data-src='/public/hoangha/general/img/top.png', src='/public/hoangha/home/img/loader.gif', alt='#')
+              div.js-parallax.home_item.item_featured(data-parallax='{"y": 51,"smoothness": 1,"x":15,"rotateX":30}')
+                img.lazyload(data-src='/public/hoangha/general/img/featured.png', src='/public/hoangha/home/img/loader.gif', alt='#')
+      // end content

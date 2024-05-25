@@ -1,0 +1,70 @@
+block mycss
+  -if(stylepage)
+    link(rel='stylesheet', type='text/css', href='/public/hoangha/#{stylepage}/css/index.css')
+block myjs
+  -if(stylepage)
+    script(type='text/javascript', src='/public/hoangha/#{stylepage}/js/index.js')
+extends ../../../layout/default
+block contents
+  .content
+    section.thietke
+      .top
+        .info
+          p.info_content
+            |Đội ngũ thiết kế sáng tạo của Hoàng à được tuyển chọn từ những cơ sở đào tạo mạnh về đồ họa và có kinh nghiệm, tay nghề vững vàng trong lĩnh vực in ấn, thiết kế. Lấy mục tiêu rút ngắn khoảng cách giữa doanh nghiệp và khách hàng, hoàng hà luôn tận tâm với những thiết kế sáng tạo, tạo ra sản phẩm chất lượng nhằm truyền tải thông điệp của doanh nghiệp đến tay khách hàng. 
+            p
+              | Hoàng Hà đang cung cấp những dịch vụ thiết kế sáng tạo gồm:
+           
+          img(src='/public/hoangha/general/img/down.png')
+          div.div_arrow
+            div.arrow.arrow-3
+            div.arrow.arrow-2
+            div.arrow.arrow-1
+      -if(design)
+        -var i=0;
+          each d in design
+            -if(i%2==0)
+              .sanpham
+                .hinhanh.boxlazy
+                    -if(d.alias=='catalogue')
+                      a(href="/#{d.alias}")
+                         img.lazyload(src='/public/upload/design/#{d.picture}')
+                    -else
+                      a(href="/thiet-ke/#{d.alias}")
+                        img.lazyload(src='/public/upload/design/#{d.picture}')
+                
+                .title
+                  -if(d.alias=='catalogue')
+                    h2 
+                      a(href="/#{d.alias}") #{d.name}
+                  -else
+                    h2 
+                      a(href="/thiet-ke/#{d.alias}") #{d.name}
+                  p #{d.contents}
+                    
+              hr
+            -else
+              .sanpham
+                .title
+                  -if(d.alias=='catalogue')
+                    h2 
+                      a(href="/#{d.alias}") #{d.name}
+                  -else
+                    h2 
+                      a(href="/thiet-ke/#{d.alias}") #{d.name}
+                     
+                   
+                  p #{d.contents}
+                .hinhanh.boxlazy
+                    -if(d.alias=='catalogue')
+                      a(href="/#{d.alias}")
+                        img.lazyload(src='/public/upload/design/#{d.picture}')
+                    -else
+                      a(href="/thiet-ke/#{d.alias}")
+                        img.lazyload(src='/public/upload/design/#{d.picture}')
+                  
+              hr
+            - i= i+1;
+            
+    .clear
+  // end content

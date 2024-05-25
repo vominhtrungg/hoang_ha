@@ -1,0 +1,25 @@
+block mycss
+  -if(stylepage)
+    link(rel='stylesheet', type='text/css', href='/public/hoangha/#{stylepage}/css/index.css')
+block myjs
+  -if(stylepage)
+    script(type='text/javascript', src='/public/hoangha/#{stylepage}/js/index.js')
+extends ../../../layout/default
+block contents
+  .content
+    .downloadfile
+      a.linkdownload(href='#{printer.downloads}', title='Tải bảng giá về máy' target="_blank" download)
+        | DOWNLOAD bảng giá
+    article.art_introduce !{printer.description}
+    #product.duan
+      -if(printer.namefooter)
+        -for(var i=0 ;i <printer.namefooter.length ; i++)
+          -if(printer.namefooter[i])
+            .hinhanh
+              a.boxlazy(href='javascript:;', title='#{printer.namefooter[i]}')
+                img.image.lazyload(data-src='/public/upload/printer/#{printer.contentfooter[i]}', src='/public/hoangha/general/img/loader.gif', alt='#{printer.namefooter[i]}')
+              .overlay
+                .text
+                  a(href='javascript:;', title='#{printer.namefooter[i]}')
+                    h3 #{printer.namefooter[i]}
+

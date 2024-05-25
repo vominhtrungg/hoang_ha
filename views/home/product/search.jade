@@ -1,0 +1,35 @@
+block mycss
+  -if(stylepage)
+    link(rel='stylesheet', type='text/css', href='/public/hoangha/#{stylepage}/css/index.css')
+block myjs
+  -if(stylepage)
+    script(type='text/javascript', src='/public/hoangha/#{stylepage}/js/index.js')
+extends ../../../layout/default
+block contents
+  .content
+    .tabs-section
+      .tabs
+        -if(cate)
+          ul
+            li
+              a(href='/san-pham' title='All') All
+            each c in cate 
+              li
+                -if(c.alias==alias)
+                  a.activemenu(href='/san-pham/#{c.alias}', title='#{c.name}') #{c.name}
+                -else
+                  a(href='/san-pham/#{c.alias}', title='#{c.name}') #{c.name}
+    -if(product)
+      .duan
+        each p in product
+          -if(p.cid_cate)
+            .hinhanh
+              a.boxlazy(href='/#{p.cid_cate.alias}/#{p.alias}', title='#{p.name}')
+                img.image.lazyload(data-src='/public/upload/product/small/#{p.picture}', src='/public/hoangha/general/img/loader.gif', alt='#{p.name}')
+              .overlay
+                .text
+                  a(href='/#{p.cid_cate.alias}/#{p.alias}', title='#{p.name}')
+                    h3 #{p.name}
+            
+  // end content
+  .clear

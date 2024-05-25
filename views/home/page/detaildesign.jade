@@ -1,0 +1,42 @@
+block mycss
+  -if(stylepage)
+    link(rel='stylesheet', type='text/css', href='/public/hoangha/#{stylepage}/css/index.css')
+block myjs
+  -if(stylepage)
+    script(type='text/javascript', src='/public/hoangha/#{stylepage}/js/index.js')
+extends ../../../layout/default
+block contents
+  
+    .content
+      .tabs-section
+       
+      -if(design_detail)
+        .content_product
+          .content-left       
+            #detail_slideshow.owl-carousel.owl-theme.tabs.detail_slideshow
+              .item
+                a(href='#product', title='#{design_detail.name}')
+                  img.owl-lazy(data-src='/public/upload/design/#{design_detail.picture}', alt='#{design_detail.name}')
+              -if(design_detail.multipicture)
+                each p in design_detail.multipicture
+                  .item
+                    a(href='#product', title='#{design_detail.name}')
+                      img.owl-lazy(data-src='/public/upload/design/#{p}', alt='#{design_detail.name} #{p}')
+                
+            #design_detail.duan
+              -if(other_design)
+                each pp in other_design
+                  -if(pp.cid_cate)
+                    .hinhanh
+                      a.boxlazy(href='/thiet-ke/#{pp.alias}', title='#{pp.name}')
+                        img.image.lazyload(data-src='/public/upload/design/small/#{pp.picture}', src='/public/hoangha/general/img/loader.gif', alt='#{pp.name}')
+                      .overlay
+                        .text
+                          a(href='/thiet-ke/#{pp.alias}', title='#{pp.name}')
+                            h3 #{pp.name}
+          .content-right
+            h1.title_detail CHI TIẾT THIẾT KẾ 
+            article.infomation_product  !{design_detail.detail}
+       
+    // end content
+    .clear

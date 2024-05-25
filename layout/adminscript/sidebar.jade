@@ -1,0 +1,171 @@
+.app-body
+      .sidebar
+        nav.sidebar-nav
+          ul.nav
+            li.nav-item
+              a.nav-link(href='/admin/index/dashboard')
+                i.icon-speedometer
+                |  Dashboard 
+                span.badge.badge-primary Thông tin 
+            li.nav-title
+              | Quản lý 
+            li.nav-item.nav-dropdown
+              a.nav-link.nav-dropdown-toggle(href='javascript:;')
+                i.fa.fa-pagelines
+                |  Danh mục  
+              ul.nav-dropdown-items
+                li.nav-item
+                  a.nav-link(href='/admin/categories/add')
+                    i.fa
+                    |  * Thêm mới    
+                li.nav-item
+                  a.nav-link(href='/admin/categories/list')
+                    i.fa
+                    |   * Danh sách  
+            li.nav-item.nav-dropdown
+              a.nav-link.nav-dropdown-toggle(href='javascript:;')
+                  i.fa.fa-product-hunt
+                  |  Sản phẩm  
+              ul.nav-dropdown-items
+                  li.nav-item
+                    a.nav-link(href='/admin/product/add')
+                      i.fa
+                      |  * Thêm mới    
+                  li.nav-item
+                    a.nav-link(href='/admin/product/list')
+                      i.fa
+                      |  * Danh sách  
+            li.nav-item.nav-dropdown
+              a.nav-link.nav-dropdown-toggle(href='javascript:;')
+                  i.fa.fa-newspaper-o
+                  |  Tin tức
+              ul.nav-dropdown-items
+                  li.nav-item
+                    a.nav-link(href='/admin/news/add')
+                      i.fa
+                      |  * Thêm mới    
+                  li.nav-item
+                    a.nav-link(href='/admin/news/list')
+                      i.fa
+                      |  * Danh sách  
+            li.nav-item.nav-dropdown
+              a.nav-link.nav-dropdown-toggle(href='javascript:;')
+                  i.fa.fa-product-hunt
+                  |  CATALOGUE
+              ul.nav-dropdown-items
+                  li.nav-item
+                    a.nav-link(href='/admin/catalogue/add')
+                      i.fa
+                      |  * Thêm mới    
+                  li.nav-item
+                    a.nav-link(href='/admin/catalogue/list')
+                      i.fa
+                      |  * Danh sách  
+            li.nav-item.nav-dropdown
+              a.nav-link.nav-dropdown-toggle(href='javascript:;')
+                  i.fa.fa-newspaper-o
+                  |  Thiết kế  
+              ul.nav-dropdown-items
+                  li.nav-item
+                    a.nav-link(href='/admin/design/add')
+                      i.fa
+                      |  * Thêm mới 
+                  li.nav-item
+                    a.nav-link(href='/admin/design/list')
+                      i.fa
+                      |  * Danh sách  
+            li.nav-item.nav-dropdown
+              a.nav-link.nav-dropdown-toggle(href='javascript:;')
+                  i.fa.fa-reddit-alien
+                  |  Dự án   
+              ul.nav-dropdown-items
+                 
+                  li.nav-item
+                    a.nav-link(href='/admin/project/list')
+                      i.fa
+                      |  * Danh sách  
+            li.nav-item.nav-dropdown
+              a.nav-link.nav-dropdown-toggle(href='javascript:;')
+                  i.fa.fa-shopping-basket
+                  |  Đối tác   
+              ul.nav-dropdown-items
+                  li.nav-item
+                    a.nav-link(href='/admin/supplier/add')
+                      i.fa
+                      |  * Đối tác  
+            li.nav-item.nav-dropdown
+              a.nav-link.nav-dropdown-toggle(href='javascript:;')
+                  i.fa.fa-print
+                  |  In gia công offset 
+              ul.nav-dropdown-items
+                  li.nav-item
+                    a.nav-link(href='/admin/printer/add')
+                      i.fa
+                      |  * In gia công offset
+            li.nav-item.nav-dropdown
+              a.nav-link.nav-dropdown-toggle(href='javascript:;')
+                  i.fa.fa-info
+                  |  Giới thiêu  
+              ul.nav-dropdown-items
+                  li.nav-item
+                    a.nav-link(href='/admin/intro/add')
+                      i.fa
+                      |  * Giới thiêu 
+                      
+            li.nav-item.nav-dropdown
+              a.nav-link.nav-dropdown-toggle(href='javascript:;')
+                  i.fa.icon-pie-chart
+                  |  Tuyển dụng 
+              ul.nav-dropdown-items
+                  li.nav-item
+                    a.nav-link(href='/admin/job/add')
+                      i.fa
+                      |  * Thêm mới 
+                  li.nav-item
+                    a.nav-link(href='/admin/job/list')
+                      i.fa
+                      |  * Danh sách  
+            li.nav-item.nav-dropdown
+              a.nav-link.nav-dropdown-toggle(href='javascript:;')
+                  i.fa.icon-star
+                  |  Slideshow
+              ul.nav-dropdown-items
+                  li.nav-item
+                    a.nav-link(href='/admin/slideshow/add')
+                      i.fa
+                      |  * Thêm mới 
+                  li.nav-item
+                    a.nav-link(href='/admin/slideshow/list')
+                      i.fa
+                      |  * Danh sách  
+            
+            li.divider
+            li.nav-title
+              | Khách hàng 
+            li.nav-item
+              a.nav-link(href='/admin/user/contact')
+                i.icon-calculator
+                |  Liên hệ  
+                span.badge.badge-primary #{totalcontact} 
+            li.nav-item.nav-dropdown
+              a.nav-link.nav-dropdown-toggle(href='javascript:;')
+                i.icon-star
+                |  Nhân viên 
+              ul.nav-dropdown-items
+                li.nav-item
+                  a.nav-link(href='/admin/user/password', target='_top')
+                    i
+                    |  * Thay đổi mật khẩu 
+                li.nav-item
+                  a.nav-link(href='/admin/user/add', target='_top')
+                    i
+                    | * Thêm mới tài khoản 
+                li.nav-item
+                  a.nav-link(href='/admin/user/list', target='_top')
+                    i
+                    | * Danh sách tài khoản 
+            li.nav-item
+              a.nav-link(href='/admin/user/logout')
+                i.icon-lock
+                |   Logout
+              

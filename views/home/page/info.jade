@@ -1,0 +1,104 @@
+block mycss
+  -if(stylepage)
+    link(rel='stylesheet', type='text/css', href='/public/hoangha/#{stylepage}/css/index.css')
+block myjs
+  -if(stylepage)
+    script(type='text/javascript', src='/public/hoangha/#{stylepage}/js/index.js')
+extends ../../../layout/default
+block contents
+  .content.content_info
+    -if(info)  
+      .infomation_1
+        h1.namecty CÔNG TY TNHH QUẢNG CÁO HOÀNG HÀ
+        h3.titleinfo
+          | Giới thiệu chung 
+          i.bullet
+        p.descinfo
+          | !{info.general}
+        h3.titleinfo
+          | Tầm nhìn 
+          i.bullet
+        p
+          | !{info.vision}
+      .infomation_2
+        .info_2_1
+          .info_2_1_1
+            h3.titleinfo
+              | Sứ mệnh 
+              i.bullet
+            p.descinfo
+              | !{info.mission}
+          .info_2_1_2
+            h3.titleinfo
+              | Lĩnh vực hoạt động 
+              i.bullet
+            p
+              | !{info.fieldwork}
+          .clear
+          .info_2_1_1.martop
+            h3.titleinfo
+              | Bộ phận kinh doanh 
+              i.bullet
+            p.descinfo
+              | !{info.bussiness}
+          .info_2_1_2.marbot
+            img(src='/public/hoangha/general/img/logo-midde.jpg', alt='In ấn Hoàng Hà')
+        .info_2_2
+          h3.titleinfo
+            | Thiết kế sáng tạo 
+            i.bullet
+          p
+            | !{info.creativedesign}
+          
+      .infomation_3
+        .info_3_1
+          h3.titleinfo
+            | Quà tặng 
+            i.bullet
+          p.descinfo
+            | !{info.gift}
+          h3.titleinfo
+            | Bộ phận giao hàng 
+            i.bullet
+          p.descinfo
+            | !{info.logistic}
+          br
+          br
+          br
+          br
+        .info_3_2
+          .info_3_2_1
+            i.mask  
+            h3.titleinfo
+              | In ấn 
+              i.bullet
+            p.descinfo
+              | !{info.printing}
+            i.mask2  
+          .info_3_2_2
+            i.mask  
+            h3.titleinfo
+              | In gia công 
+              i.bullet
+            p.descinfo
+              | !{info.processing}
+            i.mask2  
+      .infomation_1.infomation_4
+        h3.titleinfo
+          | Quy mô nhà xưởng 
+          i.bullet
+        p.descinfo
+          | !{info.scale}
+      .infomation_1.infomation_5
+        h3.titleinfo
+          | Sản phẩm
+          i.bullet
+        p.descinfo
+          | !{info.product}
+        h3.titleinfo
+          | Khách hàng
+          i.bullet
+        p.descinfo
+          | !{info.customer}
+    // end content
+    .clear

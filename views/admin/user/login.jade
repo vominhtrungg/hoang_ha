@@ -1,0 +1,50 @@
+doctype html
+//
+  * CoreUI - Open Source Bootstrap Admin Template
+  * @version v1.0.0-alpha.6
+  * @link http://coreui.io
+  * Copyright (c) 2017 creativeLabs Łukasz Holeczek
+  * @license MIT
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    meta(name='description', content='CoreUI Bootstrap 4 Admin Template')
+    meta(name='author', content='Lukasz Holeczek')
+    meta(name='keyword', content='CoreUI Bootstrap 4 Admin Template')
+    // <link rel="shortcut icon" href="assets/ico/favicon.png">
+    title Sign In to your account 
+    // Icons
+    link(href='/public/admin/css/font-awesome.min.css', rel='stylesheet')
+    link(href='/public/admin/css/simple-line-icons.css', rel='stylesheet')
+    // Main styles for this application
+    link(href='/public/admin/css/style.css', rel='stylesheet')
+  body.app.flex-row.align-items-center
+    .container
+      .row.justify-content-center
+        .col-md-8
+          .card-group.mb-0
+            .card.p-4
+              form(method="post")
+                .card-body
+                  h1 Login
+                  p.text-muted Sign In to your account
+                  .input-group.mb-3
+                    span.input-group-addon
+                      i.icon-user
+                    input.form-control(type='text', placeholder='Username' name='username' value="#{data && data.username? data.username : ''}")
+                  -if(error.username)
+                    p.error 
+                        | #{ error && error.username ? error.username : ""}
+                  .input-group.mb-4
+                    span.input-group-addon
+                      i.icon-lock
+                    input.form-control(type='password', placeholder='Password' name='password')
+                  -if(error.password)
+                    p.error 
+                        | #{ error && error.password ? error.password : ""}
+                  .row
+                    .col-6
+                      button.btn.btn-primary.px-4(type='submit') Login
+                    .col-6.text-right

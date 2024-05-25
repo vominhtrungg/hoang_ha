@@ -1,0 +1,70 @@
+block mycss
+  -if(stylepage)
+    link(rel='stylesheet', type='text/css', href='/public/hoangha/#{stylepage}/css/jquery.ui.css')
+    link(rel='stylesheet', type='text/css', href='/public/hoangha/#{stylepage}/css/jquery.ui.html4.css')
+    link(rel='stylesheet', type='text/css', href='/public/hoangha/#{stylepage}/css/index.css')
+block myjs
+  -if(stylepage)
+    script(type='text/javascript', src='/public/hoangha/#{stylepage}/extras/jquery.min.1.7.js')
+
+    script(type='text/javascript', src='/public/hoangha/#{stylepage}/lib/turn.min.js')
+    script(type='text/javascript', src='/public/hoangha/#{stylepage}/js/app.js')
+    script.
+      $(document).ready(function(){
+        $(".click_like_to").click(function(){
+          $(this).removeClass("click_like_to");
+          $.get("/cataloguelikes/#{catalogue.id}");
+          $(".total_like").html($('.total_like').html()*1+1);
+          return false;
+        });
+      });
+extends ../../../layout/default
+block contents
+  section.flipbook_content
+    .flipbook_left
+        .content_flip_book
+          .left_arrows
+          #flipbook
+            div
+                img(src="/public/upload/catalogue/#{catalogue.firstpage}")
+            -for(var i=0 ;i <catalogue.leftpages.length ;i++ )
+              div
+                img(src="/public/upload/catalogue/#{catalogue.leftpages[i]}")
+              div
+                img(src="/public/upload/catalogue/#{catalogue.rightpages[i]}")
+            div
+                img(src="/public/upload/catalogue/#{catalogue.lastpage}")
+            .hard
+          .right_arrows
+        ul
+          li(style='display:none')
+            a(href='')
+              i.icon_save
+              | SAVE
+          li
+            a.click_like_to(href='javascript:;')
+              i.icon_like
+              | LIKE 
+              span.total_like
+                -if(catalogue.likes*1 <10 )
+                  | #{catalogue.likes}
+                -else
+                  | #{catalogue.likes}
+          li
+            a(href='https://www.facebook.com/sharer/sharer.php?u=http://#{host}/catalogue/#{catalogue.alias}&display=popup&ref=plugin&src=like&kid_directed_site=0&app_id=1809151589332764' target='_black')
+              i.icon_share
+              | Share
+          li(style='display:none')
+            a(href='')
+              i.icon_download
+              | Download 
+    .flipbook_right
+       h1 Một số Catalogue khác 
+       ul
+          -each o in other
+            li
+              a(href='/catalogue/#{o.alias}')
+                img(src="/public/upload/catalogue/thumb/#{o.firstpage}")
+         
+         
+    

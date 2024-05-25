@@ -1,0 +1,114 @@
+extends ../../../layout/admin
+block admincontent
+  main.main
+    // Breadcrumb
+    ol.breadcrumb
+      li.breadcrumb-item 
+        a(href="/" target="_black")
+          | Home
+      li.breadcrumb-item.active Giới thiệu 
+    .container-fluid
+      
+      form.animated.fadeIn(method='post')
+        -if(success)
+          .card.card-inverse.card-primary.text-xs-center
+            .card-block.card-primary
+              blockquote.card-blockquote
+                p
+                  | #{success}
+
+
+        .row
+          .col-md-12
+            .card
+              .card-header
+                i.fa.fa-edit
+                | Giới thiệu 
+               
+              .card-body
+                div.form-horizontal(method='post' )
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') Giới thiệu chung  
+                    .controls.col-md-9
+                      .input-group
+                        textarea#general.form-control( type='text' name="general" ) !{data.general?data.general:''}
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') TẦM NHÌN
+                    .controls.col-md-9
+                      .input-group
+                        textarea#vision.form-control( type='text' name="vision" ) !{data.vision?data.vision:''}
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') SỨ MỆNH  
+                    .controls.col-md-9
+                      .input-group
+                        textarea#mission.form-control( type='text' name="mission" ) !{data.mission?data.mission:''}
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') LĨNH VỰC HOẠT ĐỘNG
+                    .controls.col-md-9
+                      .input-group
+                        textarea#fieldwork.form-control( type='text' name="fieldwork" ) !{data.fieldwork?data.fieldwork:''}
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') THIẾT KẾ SÁNG TẠO 
+                    .controls.col-md-9
+                      .input-group
+                        textarea#creativedesign.form-control( type='text' name="creativedesign" ) !{data.creativedesign?data.creativedesign:''}
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') BỘ PHẬN KINH DOANH 
+                    .controls.col-md-9
+                      .input-group
+                        textarea#bussiness.form-control( type='text' name="bussiness" ) !{data.bussiness?data.bussiness:''}
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') QUÀ TẶNG 
+                    .controls.col-md-9
+                      .input-group
+                        textarea#gift.form-control( type='text' name="gift" ) !{data.gift?data.gift:''}
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') IN ẤN 
+                    .controls.col-md-9
+                      .input-group
+                        textarea#printing.form-control( type='text' name="printing" ) !{data.printing?data.printing:''}
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') BỘ PHẬN GIAO HÀNG 
+                    .controls.col-md-9
+                      .input-group
+                        textarea#logistic.form-control( type='text' name="logistic" ) !{data.logistic?data.logistic:''}
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') IN GIA CÔNG
+                    .controls.col-md-9
+                      .input-group
+                        textarea#processing.form-control( type='text' name="processing" ) !{data.processing?data.processing:''}
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') QUY MÔ NHÀ XƯỞNG 
+                    .controls.col-md-9
+                      .input-group
+                        textarea#scale.form-control( type='text' name="scale" ) !{data.scale?data.scale:''}
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') SẢN PHẨM
+                    .controls.col-md-9
+                      .input-group
+                        textarea#product.form-control( type='text' name="product" ) !{data.product?data.product:''}
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') KHÁCH HÀNG
+                    .controls.col-md-9
+                      .input-group
+                        textarea#customer.form-control( type='text' name="customer" ) !{data.customer?data.customer:''}
+                  .form-actions
+                    button.btn.btn-primary(type='submit') Save changes
+                    button.btn.btn-secondary(type='reset') Cancel
+         
+          script.
+           initEditorSmall("general");
+           initEditorSmall("vision");
+           initEditorSmall("mission");
+           initEditorSmall("fieldwork");
+           initEditorSmall("creativedesign");
+           initEditorSmall("bussiness");
+           initEditorSmall("gift");
+           initEditorSmall("printing");
+           initEditorSmall("logistic");
+           initEditorSmall("processing");
+           initEditorSmall("scale");
+           initEditorSmall("product");
+           initEditorSmall("customer");
+
+            

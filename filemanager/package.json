@@ -1,0 +1,23 @@
+{
+  "name": "file-manager-js",
+  "version": "1.0.2",
+  "description": "Nodejs implementation of FileManager in CKEditor",
+  "main": "browser.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "escape-html": "^1.0.3",
+    "skipper": "^0.5.9",
+    "xml": "^1.0.1"
+  },
+  "readme": "# file-manager-js\nNodejs implementation of FileManager in CKEditor\n",
+  "readmeFilename": "README.md",
+  "gitHead": "a2de3aa0b947ca31943907a8ca2922e69b9340f9",
+  "_id": "file-manager-js@1.0.0",
+  "_shasum": "fc52407fa5579acb57b0af6ad8736b8e670ddf60",
+  "_from": "../file-manager-js",
+  "_resolved": "file:../file-manager-js"
+}

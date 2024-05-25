@@ -1,0 +1,100 @@
+extends ../../../layout/admin
+block admincontent
+  main.main
+    // Breadcrumb
+    ol.breadcrumb
+      li.breadcrumb-item 
+        a(href="/" target="_black")
+          | Home
+      li.breadcrumb-item.active In gia công offset 
+    .container-fluid
+      
+      form.animated.fadeIn(method='post' enctype="multipart/form-data")
+        -if(success)
+          .card.card-inverse.card-primary.text-xs-center
+            .card-block.card-primary
+              blockquote.card-blockquote
+                p
+                  | #{success}
+
+
+        .row
+          .col-md-12
+            .card
+              .card-header
+                i.fa.fa-edit
+                | In gia công offset 
+               
+              .card-body
+                div.form-horizontal( )
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') Tên 
+                    .controls.col-md-9
+                      .input-group
+                        input.form-control( type='text' name="name" value='#{data && data.name? data.name : ""}' )
+                      -if(error.name)
+                          div.invalid-feedback(style='display:block')
+                              | #{error.name}
+                
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') File Download 
+                    .controls.col-md-9
+                      .input-group
+                         input.form-control( type='text' name="downloads" value='#{data && data.downloads? data.downloads : ""}' )
+                  
+                
+                  .form-group.row
+                      label.form-control-label.col-md-3(for='') Mô tả 
+                      .controls.col-md-12
+                        .input-group
+                          textarea#description.form-control( type='text' name="description")  #{data && data.description? data.description : ""}
+                   
+                   -for(var i=0; i< 8; i++ )
+                      p(style='border:1px solid #ddd')
+                          .form-group.row
+                              label.form-control-label.col-md-3(for='') Tên mô tả 
+                              .controls.col-md-9
+                                .input-group
+                                   input.form-control( type='text' name="namefooter[]" value='#{data && data.namefooter ? data.namefooter[i] : ""}' )
+                          .form-group.row
+                              label.form-control-label.col-md-3(for='') File  
+                              .controls.col-md-9
+                                .input-group
+                                  input.form-control.edit_image( type='file' name="contentfooter[]" value='#{data && data.downloads? data.downloads : ""}' )
+                                  .element_picture(style='display:inline-block')
+                                    img(src='/public/upload/printer/#{data && data.contentfooter ? data.contentfooter[i] : ""}')
+                            
+                  .form-actions
+                    button.btn.btn-primary(type='submit') Save changes
+                    button.btn.btn-secondary(type='reset') Cancel
+         
+          script.
+            initEditor("description");
+block scripts
+          script.
+            $(document).ready(function(){
+                $(".edit_image").change(function(evt){
+                    var files = evt.target.files; 
+                    var th=$(this);
+                    for (var i = 0, f; f = files[i]; i++) {
+                    
+                    if (!f.type.match('image.*')) {
+                    continue;
+                    }
+                    var reader = new FileReader();
+                   
+                    reader.onload = (function(theFile) {
+                        return function(e) {
+                       
+                               $(th).next().html('<img   class="thumb" src="'+e.target.result+
+                          '" title="'+ escape(theFile.name)+'"/>');
+                          
+                        };
+                        })(f);
+                    
+                    reader.readAsDataURL(f);
+                    }
+                });
+            });
+       
+            

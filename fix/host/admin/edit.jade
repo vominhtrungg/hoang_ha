@@ -1,0 +1,171 @@
+extends ../../../layout/admin
+block admincontent
+  main.main
+    // Breadcrumb
+    ol.breadcrumb
+      li.breadcrumb-item 
+        a(href="/" target="_black")
+          | Home
+      li.breadcrumb-item.active Sản phẩm 
+    .container-fluid
+      form.animated.fadeIn(method='post' enctype="multipart/form-data")
+        -if(success)
+          .card.card-inverse.card-primary.text-xs-center
+            .card-block.card-primary
+              blockquote.card-blockquote
+                p
+                  | #{success}
+        .row
+          .col-md-12
+            .card
+              .card-header
+                i.fa.fa-edit
+                | Thêm mới sản phẩm 
+               
+              .card-body
+                div.form-horizontal(method='post' )
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') Tên sản phẩm 
+                    .controls.col-md-9
+                      .input-group
+                        input.form-control( type='text' name="name" value='#{data && data.name? data.name : ""}' )
+                      -if(error.name)
+                          div.invalid-feedback(style='display:block')
+                              | #{error.name}
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') Danh mục
+                    .controls.col-md-9
+                      .input-group
+                        -if(cate)
+                          select#cate.form-control(name='cate')
+                            each c in cate
+                              -if(data.cate && data.cate==c.id)
+                                 option(value='#{c.id}' selected='selected') #{c.name}
+                              -else
+                                 option(value='#{c.id}' ) #{c.name}
+                      -if(error.cate)
+                          div.invalid-feedback(style='display:block')
+                              | #{error.cate}
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') Hình ảnh đại diện 
+                    .controls.col-md-9
+                      .input-group
+                        input.form-control( type='file' name="picture" id="picture" accept="image/*")
+                      #list
+                        img(src="/public/upload/product/small/#{data.picture}")
+                    -if(error.picture)
+                          div.invalid-feedback(style='display:block')
+                              | #{error.picture}
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') Danh sách hình ảnh 
+                    .controls.col-md-9
+                      .input-group
+                        input.form-control( type='file' name="multipicture" id="multipicture" accept="image/*" multiple)
+                      #multilist
+                      .other
+                        -if(data.multipicture)
+                          ul.list-inline
+                            each p in data.multipicture
+                              li.list-inline-item
+                                a.remove_picture(href="/admin/product/removepicture/#{data.id}/#{p}" title="Click để xoá hình ")
+                                  i.fa.fa-remove.fa-lg
+                                img(src="/public/upload/product/small/#{p}")
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') Trạng thái  
+                    .controls.col-md-9
+                      -if(data.status)
+                        .radio
+                          label
+                            input( type='radio' name="status" value='false' ) 
+                            |    Ẩn 
+                        .radio
+                          label
+                            input( type='radio' name="status" value="true" checked ) 
+                            |  Hiện 
+                      -else
+                        .radio
+                          label
+                            input( type='radio' name="status" value='false' checked ) 
+                            |  Ẩn
+                        .radio
+                          label
+                            input( type='radio' name="status" value="true" ) 
+                            |  Hiện
+                    .form-group.row
+                      label.form-control-label.col-md-3(for='') Nội dung 
+                      .controls.col-md-12
+                        .input-group
+                          textarea#contents.form-control( type='text' name="cont")  #{data && data.cont? data.cont : ""}
+                      
+                    
+                  .form-actions
+                    button.btn.btn-primary(type='submit') Save changes
+                    button.btn.btn-secondary(type='reset') Cancel
+         
+          script.
+            function handleFileSelect(evt) {
+            var files = evt.target.files; // FileList object
+            
+            for (var i = 0, f; f = files[i]; i++) {
+            
+            if (!f.type.match('image.*')) {
+            continue;
+            }
+            var reader = new FileReader();
+           
+            reader.onload = (function(theFile) {
+            return function(e) {
+            // Render thumbnail.
+            var span = document.createElement('span');
+            span.innerHTML = ['<img style="width:100px"  class="thumb" src="', e.target.result,
+            '" title="', escape(theFile.name), '"/>'].join('');
+            
+            document.getElementById('list').innerHTML="";
+            document.getElementById('list').insertBefore(span, null);
+            };
+            })(f);
+            
+            reader.readAsDataURL(f);
+            }
+            }
+            document.getElementById('picture').addEventListener('change', handleFileSelect, false);
+
+            function handleFileSelectMulti(evt) {
+            document.getElementById('multilist').innerHTML="";
+            var files = evt.target.files; // FileList object
+            
+            for (var i = 0, f; f = files[i]; i++) {
+            
+            if (!f.type.match('image.*')) {
+            continue;
+            }
+            var reader = new FileReader();
+           
+            reader.onload = (function(theFile) {
+            return function(e) {
+            // Render thumbnail.
+            var span = document.createElement('span');
+            span.innerHTML = ['<img style="width:100px" class="thumb" src="', e.target.result,
+            '" title="', escape(theFile.name), '"/>'].join('');
+            
+            //document.getElementById('multilist').innerHTML="";
+            document.getElementById('multilist').insertBefore(span, null);
+            };
+            })(f);
+            
+            reader.readAsDataURL(f);
+            }
+            }
+
+            document.getElementById('multipicture').addEventListener('change', handleFileSelectMulti, false);
+            initEditor("contents");
+block scripts
+          script.
+            
+            $(document).ready(function(){
+                $(".remove_picture").click(function(){
+                $(this).parent().remove();
+                $.get($(this).attr("href"));
+                return false;
+                })
+            });

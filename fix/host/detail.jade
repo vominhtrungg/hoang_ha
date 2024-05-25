@@ -1,0 +1,47 @@
+block mycss
+  -if(stylepage)
+    link(rel='stylesheet', type='text/css', href='/public/hoangha/#{stylepage}/css/index.css')
+block myjs
+  -if(stylepage)
+    script(type='text/javascript', src='/public/hoangha/#{stylepage}/js/index.js')
+extends ../../../layout/default
+block contents
+  .content
+    .tabs-section
+      .tabs
+        ul
+          li
+              a(href='/san-pham' title='All') All
+          each c in cate
+            li
+              -if(c.alias==product.cid_cate.alias)
+                a.activemenu(href='/san-pham/#{c.alias}', title='#{c.name}') #{c.name}
+              -else
+                a(href='/san-pham/#{c.alias}', title='#{c.name}') #{c.name}
+       
+      #detail_slideshow.owl-carousel.owl-theme.tabs.detail_slideshow
+        .item
+          a(href='#product', title='#{product.name}')
+            img.owl-lazy(data-src='/public/upload/product/#{product.picture}', alt='#{product.name}')
+        -if(product.multipicture)
+          each p in product.multipicture
+            .item
+              a(href='#product', title='#{product.name}')
+                img.owl-lazy(data-src='/public/upload/product/#{p}', alt='#{product.name} #{p}')
+          
+      #product.duan
+        -if(other_product)
+          each pp in other_product
+            -if(pp.cid_cate)
+              .hinhanh
+                a.boxlazy(href='/#{pp.cid_cate.alias}/#{pp.alias}', title='#{pp.name}')
+                  img.image.lazyload(data-src='/public/upload/product/small/#{pp.picture}', src='/public/hoangha/general/img/loader.gif', alt='#{pp.name}')
+                .overlay
+                  .text
+                    a(href='/#{pp.cid_cate.alias}/#{pp.alias}', title='#{pp.name}')
+                      h3 #{pp.cid_cate.alias}
+           
+      article.infomation_product  !{product.contents}
+     
+  // end content
+  .clear

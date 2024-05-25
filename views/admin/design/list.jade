@@ -1,0 +1,59 @@
+extends ../../../layout/admin
+block admincontent
+  main.main
+    // Breadcrumb
+    ol.breadcrumb
+      li.breadcrumb-item Home
+      li.breadcrumb-item.active Danh sách thiết kế  
+     
+    .container-fluid
+        form.form-horizontal(action='', method='get')
+            .form-group.row
+              .col-md-12
+                .input-group
+                  span.input-group-btn
+                    button.btn.btn-primary(type='submit')
+                      i.fa.fa-search
+                      |  Tìm kiếm 
+                  input#input1-group2.form-control(type='text', name='search', placeholder='Tên thiết kế  ')
+           
+        .row
+          .col-lg-12
+            .card
+              .card-header
+                i.fa.fa-align-justify
+                |  Danh sách thiết kế  
+              .card-block
+                table.table.table-bordered.table-striped.table-condensed
+                  thead
+                    tr
+                      th Vị trí 
+                      th Tên thiết kế  
+                      th Hình ảnh 
+                      th Loại 
+                      th Trạng thái 
+                      th Tuỳ chọn 
+                  tbody
+                    -if(list.docs)
+                      each ln in list.docs
+                        tr
+                          td #{ln.position}
+                          td #{ln.name}
+                          td
+                            img(src="/public/upload/design/small/#{ln.picture}" style='width:100px')
+                            br
+                            -if(ln.multipicture)
+                              ul.list-inline
+                                each p in ln.multipicture
+                                  li.list-inline-item
+                                    img(src="/public/upload/design/small/#{p}" style='width:100px')
+                          td 
+                            | #{ln.cid_cate.name}
+                          td
+                            span.label.label-success #{ln.status ? 'Hiện thị ' :'Ẩn ' }
+                          td 
+                            a.btn.btn-success(href="/admin/design/edit/#{ln._id}")
+                              | Thay đổi 
+                            a.my_click_remove.btn.btn-danger(href="/admin/design/remove/#{ln._id}")
+                              | Xoá 
+                include ../paginate

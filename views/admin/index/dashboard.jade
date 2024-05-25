@@ -1,0 +1,184 @@
+extends ../../../layout/admin
+block admincontent
+  main.main
+    // Breadcrumb
+    ol.breadcrumb
+      li.breadcrumb-item 
+        a(href="/" target="_black")
+          | Home
+      li.breadcrumb-item.active Dashboard
+    .container-fluid
+      form.animated.fadeIn(method='post')
+        .row
+            .col-sm-6.col-lg-3
+              .card.text-white.bg-primary
+                .card-body.pb-0
+                  .btn-group.float-right
+                    button.btn.btn-transparent.dropdown-toggle.p-0(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                      i.icon-settings
+                    .dropdown-menu.dropdown-menu-right
+                      a.dropdown-item(href='/admin/product/add') Thêm mới 
+                      a.dropdown-item(href='/admin/product/list') Danh sách  
+                  h4.mb-0 #{totalproduct}
+                  p Sản phẩm  
+                .chart-wrapper.px-3(style='height:70px;')
+                  canvas#card-chart1.chart(height='70')
+            // /.col
+            .col-sm-6.col-lg-3
+              .card.text-white.bg-info
+                .card-body.pb-0
+                  .btn-group.float-right
+                    button.btn.btn-transparent.dropdown-toggle.p-0(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                      i.icon-settings
+                    .dropdown-menu.dropdown-menu-right
+                      a.dropdown-item(href='/admin/design/add') Thêm mới 
+                      a.dropdown-item(href='/admin/design/list')  Danh sách 
+                  h4.mb-0 #{totaldesign}
+                  p Thiết kế 
+                .chart-wrapper.px-3(style='height:70px;')
+                  canvas#card-chart2.chart(height='70')
+            // /.col
+            .col-sm-6.col-lg-3
+              .card.text-white.bg-warning
+                .card-body.pb-0
+                  .btn-group.float-right
+                    button.btn.btn-transparent.dropdown-toggle.p-0(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                      i.icon-settings
+                    .dropdown-menu.dropdown-menu-right
+                      a.dropdown-item(href='/admin/categories/add') Thêm mới 
+                      a.dropdown-item(href='/admin/categories/list')  Danh sách 
+                  h4.mb-0  #{totalcate}
+                  p Danh mục 
+                .chart-wrapper(style='height:70px;')
+                  canvas#card-chart3.chart(height='70')
+            // /.col
+            .col-sm-6.col-lg-3
+              .card.text-white.bg-danger
+                .card-body.pb-0
+                  .btn-group.float-right
+                    button.btn.btn-transparent.dropdown-toggle.p-0(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                      i.icon-settings
+                    .dropdown-menu.dropdown-menu-right
+                      a.dropdown-item(href='/admin/project/add') Thêm mới 
+                      a.dropdown-item(href='/admin/project/list')  Danh sách 
+                  h4.mb-0 #{totalproject}
+                  p Các dự án đã thực hiện  
+                .chart-wrapper.px-3(style='height:70px;')
+                  canvas#card-chart4.chart(height='70')
+            // /.col
+
+        .row
+          .col-md-6
+            .card
+              .card-header
+                i.fa.fa-edit
+                | Thông tin chung của website 
+              .card-body
+                div.form-horizontal(method='post' )
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') Tên site  
+                    .controls.col-md-9
+                      .input-group
+                        input.form-control( type='text' name="name" value='#{data && data.name? data.name : ""}' )
+                        -if(error && error.name)
+                          div.invalid-feedback
+                              | #{error.name}
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') Email
+                    .controls.col-md-9
+                      .input-group
+                        input.form-control( type='text' name="email" value='#{data && data.email? data.email : ""}' )
+                        -if(error && error.email)
+                          div.invalid-feedback
+                              | #{error.email}
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') Số điện thoại 
+                    .controls.col-md-9
+                      .input-group
+                        input.form-control( type='text' name="phone" value='#{data && data.phone? data.phone : ""}' )
+                        -if(error && error.email)
+                          div.invalid-feedback
+                              | #{error.email}
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') Liên hệ 
+                    .controls.col-md-9
+                      .input-group
+                        input.form-control( type='text' name="hotline" value='#{data && data.hotline? data.hotline : ""}' ) 
+                        -if(error && error.hotline)
+                          div.invalid-feedback
+                              | #{error.hotline}
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') Xưởng in 
+                    .controls.col-md-9
+                      .input-group
+                        input.form-control( type='text' name="address" value='#{data && data.address? data.address : ""}' ) 
+                        -if(error && error.address)
+                          div.invalid-feedback
+                              | #{error.address}
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') Xưởng gia công 
+                    .controls.col-md-9
+                      .input-group
+                        input.form-control( type='text' name="gc" value='#{data && data.gc? data.gc : ""}' ) 
+                        -if(error && error.gc)
+                          div.invalid-feedback
+                              | #{error.gc}
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') Mô tả 
+                    .controls.col-md-9
+                      .input-group
+                        textarea.form-control( type='text' name="description" )
+                            |#{data && data.description? data.description : ""}
+                  
+           .col-md-6
+            .card
+              .card-header
+                i.fa.fa-edit
+                | Social Network
+              .card-body
+                div.form-horizontal(method='post' )
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') Facebook
+                    .controls.col-md-9
+                      .input-group
+                        input.form-control(type='text' name="facebook" value='#{data && data.facebook? data.facebook : ""}' )
+                        -if(error && error.facebook)
+                          div.invalid-feedback
+                              | #{error.facebook}
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') Skype
+                    .controls.col-md-9
+                      .input-group
+                        input.form-control(type='text' name="skype" value='#{data && data.skype? data.skype : ""}' )
+                        -if(error && error.skype)
+                          div.invalid-feedback
+                              | #{error.skype}
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') Google
+                    .controls.col-md-9
+                      .input-group
+                        input.form-control(type='text' name="google" value='#{data && data.google? data.google : ""}' )
+                        -if(error && error.google)
+                          div.invalid-feedback
+                              | #{error.google}
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') Linkedin
+                    .controls.col-md-9
+                      .input-group
+                        input.form-control(type='text' name="linkedin" value='#{data && data.linkedin? data.linkedin : ""}' )
+                        -if(error && error.linkedin)
+                          div.invalid-feedback
+                              | #{error.linkedin}
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') Youtube
+                    .controls.col-md-9
+                      .input-group
+                        input.form-control(type='text' name="youtube" value='#{data && data.youtube? data.youtube : ""}' )
+                        -if(error && error.youtube)
+                          div.invalid-feedback
+                              | #{error.youtube}
+          .col-md-12
+            .card
+              .form-actions
+                      button.btn.btn-primary(type='submit') Save changes
+                      button.btn.btn-secondary(type='reset') Cancel       

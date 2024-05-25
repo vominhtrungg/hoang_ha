@@ -1,0 +1,367 @@
+@font-face {
+	font-family:MyriadPro-Regular;
+	src:url('/public/hoangha/general/fonts/MyriadPro-Regular.eot?');
+  	src:url('/public/hoangha/general/fonts/MyriadPro-Regular.eot?#iefix') format('embedded-opentype'),
+      url('/public/hoangha/general/fonts/MyriadPro-Regular.woff2') format('woff2'),
+      url('/public/hoangha/general/fonts/MyriadPro-Regular.woff') format('woff'),
+      url('/public/hoangha/general/fonts/MyriadPro-Regular.ttf') format('truetype'),
+      url('/public/hoangha/general/fonts/MyriadPro-Regular.svg#MyriadPro-Regular') format('svg');
+}
+@font-face {
+	font-family:Heavy;
+	src:url('/public/hoangha/general/fonts/UTMAlbertaHeavy.eot?');
+  	src:url('/public/hoangha/general/fonts/UTMAlbertaHeavy.eot?#iefix') format('embedded-opentype'),
+      url('/public/hoangha/general/fonts/UTMAlbertaHeavy.woff2') format('woff2'),
+      url('/public/hoangha/general/fonts/UTMAlbertaHeavy.woff') format('woff'),
+      url('/public/hoangha/general/fonts/UTMAlbertaHeavy.ttf') format('truetype'),
+      url('/public/hoangha/general/fonts/UTMAlbertaHeavy.svg#UTMAlbertaHeavy') format('svg');
+}
+@font-face {
+  font-family:MyriadPro-Bold;
+  src:url('/public/hoangha/general/fonts/MyriadPro-Bold.eot?');
+    src:url('/public/hoangha/general/fonts/MyriadPro-Bold.eot?#iefix') format('embedded-opentype'),
+      url('/public/hoangha/general/fonts/MyriadPro-Bold.woff2') format('woff2'),
+      url('/public/hoangha/general/fonts/MyriadPro-Bold.woff') format('woff'),
+      url('/public/hoangha/general/fonts/MyriadPro-Bold.ttf') format('truetype'),
+      url('/public/hoangha/general/fonts/MyriadPro-Bold.svg#MyriadPro-Bold') format('svg');
+}
+.animated {
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInLeft {
+  -webkit-animation-name: fadeInLeft;
+  animation-name: fadeInLeft;
+}
+
+@-webkit-keyframes fadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInRight {
+  -webkit-animation-name: fadeInRight;
+  animation-name: fadeInRight;
+}
+
+body{
+	margin:0;
+	font-family:MyriadPro-Regular;
+}
+.activemenu {
+    color: #FAC31D !important;
+}
+.content .thietke{
+	width: 100%;
+	margin: auto;
+}
+.content .thietke .top{
+	width: 100%;
+	background: #fac53b;
+	margin-top: 5px;
+	padding-bottom: 1%;
+}
+.content .thietke .top .info{
+	width: 88%;
+    margin: auto;
+    max-width: 1200px;
+    text-align: center;
+}
+.content .thietke .top .info p{
+      color: #000;
+    line-height: 28px;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: myriadbold, Arial, Tahoma;
+}
+.content .thietke .top .info p.info_content{
+	    color: #000;
+    line-height: 28px;
+    padding-top: 25px;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: myriadbold, Arial, Tahoma;
+}
+.content .thietke .top .info img{
+    padding-top: 20px;
+    display: none;
+}
+.content .thietke .sanpham{
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	margin-top: 50px;
+    height: 350px;
+
+}
+.content .thietke .sanpham .hinhanh{
+	width: 50%;
+	float: left;
+	text-align: center;
+	margin: 0 auto;
+}
+.content .thietke .sanpham .hinhanh a{
+  display: block;
+}
+.content .thietke .sanpham .hinhanh img{
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+	width: 400px;
+	height: 291px;
+}
+.content .thietke .sanpham .title{
+	width: 45%;
+	float: left;
+	margin-top: 5%;
+}
+.content .thietke .sanpham .title h2{
+	font-size: 30px;
+    color: #6f7073;
+    text-align: center;
+    font-family:MyriadPro-Bold, Arial, Tahoma;
+}
+.content .thietke .sanpham .title h2 a{
+  color: #6f7073;
+  text-decoration: none;
+  font-size: 30px;
+  font-family:MyriadPro-Bold, Arial, Tahoma;
+}
+.content .thietke .sanpham .title p{
+    line-height: 25px;
+    color: #6f7073;
+    padding-top: 10px;
+    text-align: center;
+}
+.clear{
+	clear: both;
+	content: "";
+	display: table;
+}
+.thietke hr
+{
+	width: 30%;
+	margin: 0 auto;
+	max-width: 1200px;
+	text-align: center;
+	color: #d4d5d7;
+	background-color: #d4d5d7;
+	display: none;
+}
+.div_arrow
+{
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	max-width: 1200px;
+	height: 83px;
+	position: relative;
+}
+.arrow {
+  opacity: 0;
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+          transform: translate3d(-50%, -50%, 0);
+}
+
+.arrow-1 {
+  -webkit-animation: arrow-movement 0.8s ease-in-out infinite;
+          animation: arrow-movement 0.8s ease-in-out infinite;
+}
+
+.arrow-2 {
+  -webkit-animation: arrow-movement 0.8s ease-in-out infinite;
+          animation: arrow-movement 0.8s ease-in-out infinite;
+		  left: 50.3%;
+}
+.arrow-3 {
+  -webkit-animation: arrow-movement 0.8s 0s ease-in-out infinite;
+          animation: arrow-movement 0.8s 0s ease-in-out infinite;
+		  left: 50.5%;
+}
+.arrow:before,
+.arrow:after {
+  background: #fff;
+  content: '';
+  display: block;
+  height: 4px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 35px;
+}
+.arrow-3:before,
+.arrow-3:after {
+  width: 18px;
+  height: 2px;
+}
+.arrow-2:before,
+.arrow-2:after {
+  width: 27px;
+  height: 3px;
+}
+.arrow-1
+{
+	top: 75%;
+}
+.arrow-2
+{
+	left: 50.3%;
+	top: 62%;
+}
+.arrow-3
+{
+	left: 50.7%;
+	top: 51%;
+}
+.content
+{
+  max-width: 100%;
+}
+.arrow:before {
+  -webkit-transform: rotate(45deg) translateX(-23%);
+          transform: rotate(45deg) translateX(-23%);
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+}
+
+.arrow:after {
+  -webkit-transform: rotate(-45deg) translateX(23%);
+          transform: rotate(-45deg) translateX(23%);
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+}
+
+@-webkit-keyframes arrow-movement {
+  0% {
+    opacity: 0;
+    top: 45%;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes arrow-movement {
+  0% {
+    opacity: 0;
+    top: 45%;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@media only screen and (max-width: 1024px)
+{
+	.content .thietke .sanpham .hinhanh img
+	{
+		max-width: 100%;
+	    height: auto;
+	    width: 100%;
+	}
+}
+@media only screen and (max-width: 800px)
+{
+	.content .thietke .top
+	{
+		height: auto;
+	}
+	.content .thietke .sanpham
+	{
+		height: auto;
+	}
+}
+@media only screen and (max-width: 480px)
+{
+	.content .thietke .top .info p
+	{
+		font-size: 3.5vw;
+		line-height: 25px;
+	}
+	.content .thietke .sanpham .hinhanh, .content .thietke .sanpham .title
+	{
+		width: 100%;
+	}
+	.content .thietke .sanpham .title
+	{
+		margin-top: 0px;
+		margin-bottom: 2%;
+	}
+	.content .thietke .sanpham .title h2
+	{
+		font-size: 6vw;
+	}
+	.content .thietke .sanpham .title p
+	{
+		font-size: 4vw;
+	}
+	.content .thietke .sanpham .hinhanh
+	{
+		margin-bottom: 4%;
+	}
+
+}

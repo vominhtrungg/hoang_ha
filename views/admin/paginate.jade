@@ -1,0 +1,17 @@
+-if(paginate.hasPreviousPages || paginate.hasNextPages(list.pages))    
+    nav
+                  ul.pagination
+                    -if(paginate.hasPreviousPages)
+                      li.page-item(style="display:none")
+                        a.page-link(href='#{paginate.href(true)}') Prev
+                    -if(pages)
+                      each page in pages
+                        -if(page.number==currentPage)
+                          li.page-item.active
+                            a.page-link(href='#{page.url}') #{page.number}
+                        -else
+                          li.page-item
+                            a.page-link(href='#{page.url}') #{page.number}
+                    -if(paginate.hasNextPages(list.pages))
+                      li.page-item(style="display:none")
+                        a.page-link(href='#{paginate.href()}') Next

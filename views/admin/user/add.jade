@@ -1,0 +1,89 @@
+extends ../../../layout/admin
+block admincontent
+  main.main
+    // Breadcrumb
+    ol.breadcrumb
+      li.breadcrumb-item 
+        a(href="/" target="_black")
+          | Home
+      li.breadcrumb-item.active  Thêm mới người dùng 
+    .container-fluid
+      
+      form.animated.fadeIn(method='post')
+        -if(success)
+          .card.card-inverse.card-primary.text-xs-center
+            .card-block.card-primary
+              blockquote.card-blockquote
+                p
+                  | #{success}
+
+
+        .row
+          .col-md-12
+            .card
+              .card-header
+                i.fa.fa-edit
+                |  Người dùng 
+               
+              .card-body
+                div.form-horizontal(method='post' )
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='')  Tên đăng nhập 
+                    .controls.col-md-9
+                      .input-group
+                        input.form-control( type='text' name="username" value='#{data && data.name? data.name : ""}' )
+                      -if(error.username)
+                          div.invalid-feedback(style='display:block')
+                              | #{error.username}
+                
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='')  Mật khẩu    
+                    .controls.col-md-9
+                      .input-group
+                        input.form-control( type='password' name="password" value='#{data && data.password? data.password : ""}' )
+                      -if(error.password)
+                          div.invalid-feedback(style='display:block')
+                              | #{error.password}
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='')  nhập lại mật khẩu  
+                    .controls.col-md-9
+                      .input-group
+                        input.form-control( type='password' name="reset" value='#{data && data.reset? data.reset : ""}' )
+                      -if(error.reset)
+                          div.invalid-feedback(style='display:block')
+                              | #{error.reset}
+                 
+                    
+                  .form-actions
+                    button.btn.btn-primary(type='submit') Save changes
+                    button.btn.btn-secondary(type='reset') Cancel
+         
+          script.
+            function handleFileSelect(evt) {
+            var files = evt.target.files; // FileList object
+            
+            for (var i = 0, f; f = files[i]; i++) {
+            
+            if (!f.type.match('image.*')) {
+            continue;
+            }
+            var reader = new FileReader();
+           
+            reader.onload = (function(theFile) {
+            return function(e) {
+            // Render thumbnail.
+            var span = document.createElement('span');
+            span.innerHTML = ['<img  class="thumb" src="', e.target.result,
+            '" title="', escape(theFile.name), '"/>'].join('');
+            
+            document.getElementById('list').innerHTML="";
+            document.getElementById('list').insertBefore(span, null);
+            };
+            })(f);
+            
+            reader.readAsDataURL(f);
+            }
+            }
+            document.getElementById('picture').addEventListener('change', handleFileSelect, false);
+
+            

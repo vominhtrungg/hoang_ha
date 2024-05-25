@@ -1,0 +1,40 @@
+extends ../../../layout/admin
+block admincontent
+  main.main
+    // Breadcrumb
+    ol.breadcrumb
+      li.breadcrumb-item Home
+      li.breadcrumb-item.active Danh sách dự án 
+     
+    .container-fluid
+        
+           
+        .row
+          .col-lg-12
+            .card
+              .card-header
+                i.fa.fa-align-justify
+                |  Danh sách dự án 
+              .card-block
+                table.table.table-bordered.table-striped.table-condensed
+                  thead
+                    tr
+                      th Tên 
+                      th Hình ảnh 
+                      th Đường dẫn 
+                      th Tuỳ chọn 
+                  tbody
+                    -if(list.docs)
+                      each ln in list.docs
+                        tr
+                          td #{ln.name}
+                          td
+                            img(src="/public/upload/project/small/#{ln.picture}" style='width:100px')
+                           
+                          td
+                            | #{ln.links}
+                          td 
+                            a.btn.btn-success(href="/admin/project/edit/#{ln._id}")
+                              | Thay đổi 
+                        
+                include ../paginate

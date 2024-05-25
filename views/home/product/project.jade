@@ -1,0 +1,37 @@
+block mycss
+  -if(stylepage)
+    link(rel='stylesheet', type='text/css', href='/public/hoangha/#{stylepage}/css/index.css')
+block myjs
+  -if(stylepage)
+    script(type='text/javascript', src='/public/hoangha/#{stylepage}/js/index.js')
+extends ../../../layout/default
+block contents
+  .content
+    .tabs-section
+      .tabs
+        
+    .content-left      
+      #detail_slideshow.owl-carousel.owl-theme.tabs.detail_slideshow
+        .item
+          a(href='#project', title='#{project.name}')
+            img.owl-lazy(data-src='/public/upload/project/#{project.picture}', alt='#{project.name}')
+        -if(project.multipicture)
+          each p in project.multipicture
+            .item
+              a(href='#project', title='#{project.name}')
+                img.owl-lazy(data-src='/public/upload/project/#{p}', alt='#{project.name} #{p}')
+          
+      #project.duan
+              .hinhanh
+                a.boxlazy(href='javascript:;', idx='1' title='#{project.name}')
+                  img.image.lazyload(data-src='/public/upload/project/small/#{project.picture}', src='/public/hoangha/general/img/loader.gif', alt='#{project.name}')
+              -var i=2;
+              -if(project.multipicture)
+                  each p in project.multipicture
+                    .hinhanh
+                          a.boxlazy(href='javascript:;' idx='#{i}' title='#{project.name}')
+                            img.image.lazyload(data-src='/public/upload/project/small/#{p}', src='/public/hoangha/general/img/loader.gif', alt='#{project.name}')
+                    - i=i+1;
+    .content-right
+      article.infomation_product !{project.contents}
+  .clear

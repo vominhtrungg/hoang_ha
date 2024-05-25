@@ -1,0 +1,63 @@
+block mycss
+  -if(stylepage)
+    link(rel='stylesheet', type='text/css', href='/public/hoangha/#{stylepage}/index.css')
+extends ../../../layout/default
+block contents
+    .content
+      section.tuyendung
+        -if(news_header)
+          a.bannernews(href='/tin-tuc/#{news_header.alias}', title='#{news_header.name}')
+            img(src='/public/upload/news/#{news_header.picture_main}', alt='#{news_header.name}')
+            i
+            h3 #{news_header.name}
+            b
+            p !{news_header.description}
+        .boxtintuc.container
+          .content_highlight
+            -if(news)
+              each n,k in news
+                article( class="#{k==6?'bignews1':''}")
+                  .avatarnews
+                    a(href='/tin-tuc/#{n.alias}', title='#{n.name}')
+                      -if(k==6)
+                        img(src='/public/upload/news/#{n.picture_main}', alt='#{n.name}')
+                      -else
+                        img(src='/public/upload/news/#{n.picture}', alt='#{n.name}')
+                  .infonews
+                    h3
+                      a(href='/tin-tuc/#{n.alias}', title='#{n.name}') #{n.name} 
+                    p
+                      | #{n.description}
+            .load_more
+              a.view_more(href='javascript:;', title='Xem thêm sản phẩm')  Xem thêm tin tức khác
+          .content_newspromo
+            h2 Khuyến mãi
+            .promo_hightlight
+              -if(news_km)
+                each n in news_km
+                  article
+                    .avatarnews
+                      a(href='/tin-tuc/#{n.alias}', title='#{n.name}')
+                        img(src='/public/upload/news/#{n.picture}', alt='#{n.name}')
+                    .infonews
+                      h3
+                        a(href='/tin-tuc/#{n.alias}', title='#{n.name}') #{n.name}
+                      p #{n.description}
+              
+          .content_thuthuat
+            h2 Th&#x1EE7; thu&#x1EAD;t
+            .box_thuthuat
+              -if(news_tt)
+                each n,k in news_tt
+                  -if(k==0)
+                    .avatarnews
+                      a(href='/tin-tuc/#{n.alias}', title='#{n.name}')
+                        img(src='/public/upload/news/#{n.picture}', alt='#{n.name}')
+                        h3 #{n.name}
+                  -else
+                    h3
+                      a(href='/tin-tuc/#{n.alias}', title='#{n.name}')
+                        | #{n.name}
+             
+      .clear
+

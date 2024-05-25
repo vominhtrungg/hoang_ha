@@ -1,0 +1,128 @@
+extends ../../../layout/admin
+block admincontent
+  main.main
+    // Breadcrumb
+    ol.breadcrumb
+      li.breadcrumb-item 
+        a(href="/" target="_black")
+          | Home
+      li.breadcrumb-item.active dự án  
+    .container-fluid
+      form.animated.fadeIn(method='post' enctype="multipart/form-data")
+        -if(success)
+          .card.card-inverse.card-primary.text-xs-center
+            .card-block.card-primary
+              blockquote.card-blockquote
+                p
+                  | #{success}
+        .row
+          .col-md-12
+            .card
+              .card-header
+                i.fa.fa-edit
+                |  Dự án 
+                a(href='/admin/project/list') Danh sách 
+               
+              .card-body
+                div.form-horizontal(method='post' )
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') Tên 
+                    .controls.col-md-9
+                      .input-group
+                        input.form-control( type='text' name="name" value='#{data && data.name? data.name : ""}' )
+                      -if(error.name)
+                          div.invalid-feedback(style='display:block')
+                              | #{error.name}
+                  
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') Hình ảnh đại diện 
+                    .controls.col-md-9
+                      .input-group
+                        input.form-control( type='file' name="picture" id="picture" accept="image/*")
+                      #list
+                        img(src="/public/upload/project/small/#{data.picture}")
+                    -if(error.picture)
+                          div.invalid-feedback(style='display:block')
+                              | #{error.picture}
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') Đường dẫn 
+                    .controls.col-md-9
+                      .input-group
+                        input.form-control( type='text' name="links" value='#{data && data.links? data.links : ""}' )
+                  .form-group.row(style='display:none')
+                    label.form-control-label.col-md-3(for='') Vị trí 
+                    .controls.col-md-9
+                      .input-group
+                        input.form-control( type='number' name="position" value='#{data && data.position? data.position : ""}' )
+                    
+                  .form-actions
+                    button.btn.btn-primary(type='submit') Save changes
+                    button.btn.btn-secondary(type='reset') Cancel
+         
+          script.
+            function handleFileSelect(evt) {
+            var files = evt.target.files; // FileList object
+            
+            for (var i = 0, f; f = files[i]; i++) {
+            
+            if (!f.type.match('image.*')) {
+            continue;
+            }
+            var reader = new FileReader();
+           
+            reader.onload = (function(theFile) {
+            return function(e) {
+            // Render thumbnail.
+            var span = document.createElement('span');
+            span.innerHTML = ['<img style="width:100px"  class="thumb" src="', e.target.result,
+            '" title="', escape(theFile.name), '"/>'].join('');
+            
+            document.getElementById('list').innerHTML="";
+            document.getElementById('list').insertBefore(span, null);
+            };
+            })(f);
+            
+            reader.readAsDataURL(f);
+            }
+            }
+            document.getElementById('picture').addEventListener('change', handleFileSelect, false);
+
+            function handleFileSelectMulti(evt) {
+            document.getElementById('multilist').innerHTML="";
+            var files = evt.target.files; // FileList object
+            
+            for (var i = 0, f; f = files[i]; i++) {
+            
+            if (!f.type.match('image.*')) {
+            continue;
+            }
+            var reader = new FileReader();
+           
+            reader.onload = (function(theFile) {
+            return function(e) {
+            // Render thumbnail.
+            var span = document.createElement('span');
+            span.innerHTML = ['<img style="width:100px" class="thumb" src="', e.target.result,
+            '" title="', escape(theFile.name), '"/>'].join('');
+            
+            //document.getElementById('multilist').innerHTML="";
+            document.getElementById('multilist').insertBefore(span, null);
+            };
+            })(f);
+            
+            reader.readAsDataURL(f);
+            }
+            }
+
+            document.getElementById('multipicture').addEventListener('change', handleFileSelectMulti, false);
+            initEditor("contents");
+block scripts
+          script.
+            
+            $(document).ready(function(){
+                $(".remove_picture").click(function(){
+                $(this).parent().remove();
+                $.get($(this).attr("href"));
+                return false;
+                })
+            });

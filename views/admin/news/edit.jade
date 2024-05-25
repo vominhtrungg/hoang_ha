@@ -1,0 +1,233 @@
+extends ../../../layout/admin
+block admincontent
+  main.main
+    // Breadcrumb
+    ol.breadcrumb
+      li.breadcrumb-item 
+        a(href="/" target="_black")
+          | Home
+      li.breadcrumb-item 
+        a(href="/admin/news/list")
+          | Danh sách tin tức
+      li.breadcrumb-item.active Tin tức 
+    .container-fluid
+      
+      form.animated.fadeIn(method='post' enctype="multipart/form-data")
+        -if(success)
+          .card.card-inverse.card-primary.text-xs-center
+            .card-block.card-primary
+              blockquote.card-blockquote
+                p
+                  | #{success}
+
+
+        .row
+          .col-md-12
+            .card
+              .card-header
+                i.fa.fa-edit
+                |  Tin tức
+               
+              .card-body
+                div.form-horizontal(method='post' )
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') Tên 
+                    .controls.col-md-9
+                      .input-group
+                        input.form-control( type='text' name="name" value='#{data && data.name? data.name : ""}' )
+                      -if(error.name)
+                          div.invalid-feedback(style='display:block')
+                              | #{error.name}
+                  .form-group.row
+                      label.form-control-label.col-md-3(for='') Ngày tạo
+                      .controls.col-md-9
+                        .input-group
+                          input.form-control( type='text' name="my_created_at" value='#{data && data.my_created_at? data.my_created_at : "" }')  
+                  .form-group.row
+                      label.form-control-label.col-md-3(for='') Thời gian để chạy 
+                      .controls.col-md-9
+                        .input-group
+                          input.form-control#datetimepicker1( type='text' name="is_time" value='#{data && data.is_time? data.is_time : "" }') 
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') Danh mục
+                    .controls.col-md-9
+                           
+                              .radio
+                                label
+                                  -if(data.cid_cate==3)
+                                    input( type='radio' name="cid_cate" value='3'  checked ) 
+                                    |   Tin tức 
+                                  -else
+                                    input( type='radio' name="cid_cate" value='3') 
+                                    |   Tin tức 
+                                  
+                              .radio
+                                label
+                                  -if(data.cid_cate==1)
+                                    input( type='radio' name="cid_cate" value='1' checked ) 
+                                    |    Khuyến mãi  
+                                  -else
+                                    input( type='radio' name="cid_cate" value='1'  ) 
+                                    |    Khuyến mãi  
+                                  
+                                  
+                              .radio
+                                label
+                                  -if(data.cid_cate==2)
+                                    input( type='radio' name="cid_cate" value="2"  checked ) 
+                                    |  Thủ thuật 
+                                  -else
+                                    input( type='radio' name="cid_cate" value="2"   ) 
+                                    |  Thủ thuật 
+                          
+                  .form-group.row
+                        label.form-control-label.col-md-3(for='') Hình ảnh đại diện 
+                        .controls.col-md-9
+                          .input-group
+                            input.form-control( type='file' name="picture" id="picture" accept="image/*")
+                          #list
+                            img(src="/public/upload/news/#{data.picture}" style='width:100px')
+                        -if(error.picture)
+                              div.invalid-feedback(style='display:block')
+                                  | #{error.picture}
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='')  hình ảnh 
+                    .controls.col-md-9
+                      .input-group
+                        input.form-control( type='file' name="picturetitle" id="multipicture" accept="image/*" )
+                      #multilist
+                        img(src="/public/upload/news/#{data.picture_main}" style='width:100px')
+                  
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') Trạng thái  
+                    .controls.col-md-9
+                      -if(data.status)
+                        .radio
+                          label
+                            input( type='radio' name="status" value='false' ) 
+                            |    Ẩn 
+                        .radio
+                          label
+                            input( type='radio' name="status" value="true" checked ) 
+                            |  Hiện 
+                      -else
+                        .radio
+                          label
+                            input( type='radio' name="status" value='false' checked ) 
+                            |  Ẩn
+                        .radio
+                          label
+                            input( type='radio' name="status" value="true" ) 
+                            |  Hiện
+                  .form-group.row
+                      label.form-control-label.col-md-3(for='') Hiện thị ở đầu tiên
+                      .controls.col-md-9
+                        -if(data.is_home)
+                          .radio
+                            label
+                              input( type='radio' name="is_home" value='false' ) 
+                              |    Ẩn 
+                          .radio
+                            label
+                              input( type='radio' name="is_home" value="true" checked ) 
+                              |  Hiện 
+                        -else
+                          .radio
+                            label
+                              input( type='radio' name="is_home" value='false' checked ) 
+                              |  Ẩn
+                          .radio
+                            label
+                              input( type='radio' name="is_home" value="true" ) 
+                              |  Hiện
+                  .form-group.row
+                      label.form-control-label.col-md-3(for='') SLOGAN
+                      .controls.col-md-9
+                        .input-group
+                          textarea.form-control( type='text' name="slogan" rows=8)  #{data && data.slogan? data.slogan : ""}
+                  .form-group.row
+                      label.form-control-label.col-md-3(for='') Mô tả 
+                      .controls.col-md-9
+                        .input-group
+                          textarea#description.form-control( type='text' name="description" rows=8)  #{data && data.description? data.description : ""}
+                      -if(error.description)
+                              div.invalid-feedback(style='display:block')
+                                  | #{error.description}
+                  .form-group.row
+                      label.form-control-label.col-md-3(for='') Nội dung 
+                      .controls.col-md-12
+                        .input-group
+                          textarea#contents.form-control( type='text' name="contents" )  #{data && data.contents? data.contents : ""}
+                      -if(error.contents)
+                              div.invalid-feedback(style='display:block')
+                                  | #{error.contents}
+                    
+                  .form-actions
+                    button.btn.btn-primary(type='submit') Save changes
+                    button.btn.btn-secondary(type='reset') Cancel
+         
+          script.
+            function handleFileSelect(evt) {
+            var files = evt.target.files; // FileList object
+            
+            for (var i = 0, f; f = files[i]; i++) {
+            
+            if (!f.type.match('image.*')) {
+            continue;
+            }
+            var reader = new FileReader();
+           
+            reader.onload = (function(theFile) {
+            return function(e) {
+            // Render thumbnail.
+            var span = document.createElement('span');
+            span.innerHTML = ['<img style="width:100px"  class="thumb" src="', e.target.result,
+            '" title="', escape(theFile.name), '"/>'].join('');
+            
+            document.getElementById('list').innerHTML="";
+            document.getElementById('list').insertBefore(span, null);
+            };
+            })(f);
+            
+            reader.readAsDataURL(f);
+            }
+            }
+            document.getElementById('picture').addEventListener('change', handleFileSelect, false);
+
+            function handleFileSelectMulti(evt) {
+            document.getElementById('multilist').innerHTML="";
+            var files = evt.target.files; // FileList object
+            
+            for (var i = 0, f; f = files[i]; i++) {
+            
+            if (!f.type.match('image.*')) {
+            continue;
+            }
+            var reader = new FileReader();
+           
+            reader.onload = (function(theFile) {
+            return function(e) {
+            // Render thumbnail.
+            var span = document.createElement('span');
+            span.innerHTML = ['<img style="width:100px" class="thumb" src="', e.target.result,
+            '" title="', escape(theFile.name), '"/>'].join('');
+            
+            //document.getElementById('multilist').innerHTML="";
+            document.getElementById('multilist').insertBefore(span, null);
+            };
+            })(f);
+            
+            reader.readAsDataURL(f);
+            }
+            }
+            document.getElementById('multipicture').addEventListener('change', handleFileSelectMulti, false);
+           
+       
+            initEditor("contents");
+block scripts
+      link(rel='stylesheet', type='text/css', href='/public/admin/datetime/css/jquery.datetimepicker.min.css')
+      script(src='/public/admin/datetime/js/jquery.datetimepicker.js')
+      script(type='text/javascript').
+        $(function () {
+        $('#datetimepicker1').datetimepicker();
+        });

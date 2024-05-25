@@ -1,0 +1,41 @@
+block mycss
+  -if(stylepage)
+    link(rel='stylesheet', type='text/css', href='/public/hoangha/#{stylepage}/css/index.css')
+block myjs
+  -if(stylepage)
+    script(type='text/javascript', src='/public/hoangha/#{stylepage}/js/index.js')
+extends ../../../layout/default
+block contents
+  .content
+    section.tuyendung
+      h1.font-face TUYỂN DỤNG
+      -if(job)
+        each j in job
+          .career
+            .avatar_tuyendung
+              img(src='/public/upload/job/#{j.picture}')
+            .info
+              h3 #{j.name}
+              table.tbl_job(border='1', cellpadding='1', cellspacing='0')
+                tbody
+                  tr
+                    td
+                      strong Mô tả công việc:
+                    td 
+                      .content_job
+                        | !{j.contents}
+                     
+                  tr
+                    td
+                      p
+                        strong Thời hạn nộp hồ sơ
+                    td #{j.timed}
+                     
+                  tr
+                    td
+                      p
+                        strong Liên hệ
+                    td #{j.contact}
+
+    .clear
+  // end content

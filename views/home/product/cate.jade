@@ -1,0 +1,33 @@
+block mycss
+  -if(stylepage)
+    link(rel='stylesheet', type='text/css', href='/public/hoangha/#{stylepage}/css/index.css')
+block myjs
+  -if(stylepage)
+    script(type='text/javascript', src='/public/hoangha/#{stylepage}/js/index.js')
+extends ../../../layout/default
+block contents
+  -if(cate)
+    .content
+      .tabs-section
+        
+                
+      .duan
+        each c in cate
+          .hinhanh
+            -if(c.alias=='catalogue')
+              a.boxlazy(href='/#{c.alias}', title='#{c.name}')
+                img.image.lazyload(data-src='/public/upload/cate/small/#{c.picture}', src='/public/hoangha/general/img/loader.gif', alt='#{c.name}')
+              .overlay
+                .text
+                  a(href='/#{c.alias}', title='#{c.name}')
+                    h3 #{c.name}
+            -else
+              a.boxlazy(href='/san-pham/#{c.alias}', title='#{c.name}')
+                img.image.lazyload(data-src='/public/upload/cate/small/#{c.picture}', src='/public/hoangha/general/img/loader.gif', alt='#{c.name}')
+              .overlay
+                .text
+                  a(href='/san-pham/#{c.alias}', title='#{c.name}')
+                    h3 #{c.name}
+          
+    // end content
+    .clear

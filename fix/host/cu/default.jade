@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    title #{ (seo_title) ? seo_title : " In ấn - Quảng cáo Hoàng Hà | Thiết kế, in gia công uy tín "} 
+    meta(http-equiv='content-type', content='text/html; charset=utf-8')
+    meta(name='author', content=' Công ty TNHH Quảng Cáo Hoàng Hà ')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content=' #{ (seo_description) ? seo_description : "Công ty quảng cáo Hoàng Hà chuyên thiết kế, in ấn, lịch, name card, brochure, catalogue, bao bì, poster, thiệp mời , in gia công với giá rẻ nhiều chương trình khuyến mãi, hậu mãi"} ')
+    meta(name='keywords', content='quảng cáo, in ấn Hoàng Hà, name card, thiết kế, in gia công, brochure, lịch, poster ')
+    meta(content='noodp,noydir', name='robots')
+    link(type='image/x-icon', rel='Shortcut Icon', href='/public/hoangha/general/img/favicon.ico')
+    link(rel='stylesheet', type='text/css', href='/public/hoangha/general/css/owl.carousel.min.css')
+    link(rel='stylesheet', type='text/css', href='/public/hoangha/general/css/style.css')
+    block mycss
+    script(type='text/javascript', src='/public/hoangha/general/js/jquery-1.11.3.min.js')
+    script(type='text/javascript',  src='/public/hoangha/general/js/owl.carousel.min.js')
+    script(type='text/javascript',  src='/public/hoangha/general/js/lazyload.min.js')
+    script(type='text/javascript',  src='/public/hoangha/general/js/myjquery.js')
+    block myjs
+    script(async='', src='https://www.googletagmanager.com/gtag/js?id=UA-125426173-21')
+    script.
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-125426173-21');
+ 
+  body
+    section#wrapper
+      include default/header
+      block contents
+      include default/footer
+     

@@ -1,0 +1,57 @@
+extends ../../../layout/admin
+block admincontent
+  main.main
+    // Breadcrumb
+    ol.breadcrumb
+      li.breadcrumb-item Home
+      li.breadcrumb-item.active Danh sách Slideshow
+     
+    .container-fluid
+        form.form-horizontal(action='', method='get')
+            .form-group.row
+              .col-md-12
+                .input-group
+                  span.input-group-btn
+                    button.btn.btn-primary(type='submit')
+                      i.fa.fa-search
+                      |  Tìm kiếm 
+                  input#input1-group2.form-control(type='text', name='search', placeholder='Tên Slideshow')
+           
+        .row
+          .col-lg-12
+            .card
+              .card-header
+                i.fa.fa-align-justify
+                |  Danh sách Slideshow
+              .card-block
+                table.table.table-bordered.table-striped.table-condensed
+                  thead
+                    tr
+                      th Trang hiện thị 
+                      th Tên Slideshow
+                      th Hình ảnh 
+                      th Links
+                      th Trạng thái 
+                      th Tuỳ chọn 
+                  tbody
+                    -if(list.docs)
+                      each ln in list.docs
+                        tr
+                          td 
+                            each p in page
+                              -if(p[0]===ln.page)
+                                | #{p[1]}
+                          td #{ln.name}
+                          td
+                            img(src="/public/upload/slideshow/small/#{ln.picture}" style='width:100px')
+                           
+                          td
+                            | #{ln.links}
+                          td
+                            span.label.label-success #{ln.status ? 'Hiện thị ' :'Ẩn ' }
+                          td 
+                            a.btn.btn-success(href="/admin/slideshow/edit/#{ln._id}")
+                              | Thay đổi 
+                            a.my_click_remove.btn.btn-danger(href="/admin/slideshow/remove/#{ln._id}")
+                              | Xoá 
+                include ../paginate

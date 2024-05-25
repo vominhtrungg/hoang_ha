@@ -1,0 +1,141 @@
+extends ../../../layout/admin
+block admincontent
+  main.main
+    // Breadcrumb
+    ol.breadcrumb
+      li.breadcrumb-item 
+        a(href="/" target="_black")
+          | Home
+      li.breadcrumb-item.active Catalogue
+    .container-fluid
+      
+      form.animated.fadeIn(method='post' enctype="multipart/form-data")
+        -if(success)
+          .card.card-inverse.card-primary.text-xs-center
+            .card-block.card-primary
+              blockquote.card-blockquote
+                p
+                  | #{success}
+
+
+        .row
+          .col-md-12
+            .card
+              .card-header
+                i.fa.fa-edit
+                | Thêm mới catalogue
+               
+              .card-body
+                p(style='color:red')
+                  small
+                   | Size hình ảnh 300px - 400px  
+                div.form-horizontal(method='post' )
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') Tên catalogue
+                    .controls.col-md-9
+                      .input-group
+                        input.form-control( type='text' name="name" value='#{data && data.name? data.name : ""}' required )
+                      -if(error.name)
+                          div.invalid-feedback(style='display:block')
+                              | #{error.name}
+                 
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') Đầu trang 
+                    .controls.col-md-9
+                      .input-group
+                        input.form-control.picture_change( type='file' name="picture_first" id="picture_first" accept="image/*" required)
+                      #list_first
+                  .content_page(style='border:1px solid #ddd;background:#f1eeee')
+                    input.addpage(type='button' value='Thêm trang ' style='margin:20px ')
+                    div
+                      .class_element(style='border:1px solid black')
+                       
+
+                        .form-group.row
+                            .col-sm-5
+                                label.form-control-label.col-md-3(for='') Trái 
+                                .controls.col-md-9
+                                  .input-group
+                                    input.form-control.picture_left.picture_change( type='file' name="picture_left[]"  accept="image/*" required)
+                                  .list_ele
+                            .col-sm-5
+                                label.form-control-label.col-md-3(for='') Phải 
+                                .controls.col-md-9
+                                  .input-group
+                                    input.form-control.picture_right.picture_change( type='file' name="picture_right[]"  accept="image/*" required)
+                                  .list_ele
+                  p
+                  .form-group.row
+                    label.form-control-label.col-md-3(for='') Cuối trang  
+                    .controls.col-md-9
+                      .input-group
+                        input.form-control.picture_change( type='file' name="picture_end" id="picture_end" accept="image/*" required)
+                      #list_end
+                    
+                  .form-actions
+                    button.btn.btn-primary(type='submit') Save changes
+                    button.btn.btn-secondary(type='reset') Cancel
+         
+          script.
+            function handleFileSelect(evt) {
+            var files = evt.target.files; 
+            
+            for (var i = 0, f; f = files[i]; i++) {
+            
+            if (!f.type.match('image.*')) {
+            continue;
+            }
+            var reader = new FileReader();
+           
+            reader.onload = (function(theFile) {
+            return function(e) {
+           
+            var span = document.createElement('span');
+            span.innerHTML = ['<img style="width:100px"  class="thumb" src="', e.target.result,
+            '" title="', escape(theFile.name), '"/>'].join('');
+            
+            document.getElementById('list').innerHTML="";
+            document.getElementById('list').insertBefore(span, null);
+            };
+            })(f);
+            
+            reader.readAsDataURL(f);
+            }
+            }
+block scripts
+    script.
+            $(document).ready(function(){
+                    $(".addpage").click(function(){
+                       
+                        $(this).parent().append($(this).next().html().replace("<img","<aimg").replace("<img","<bimg"));
+                        loadApp();
+                    });
+                function loadApp(){
+                       $(".picture_change").on("change",function(evt){
+                          var th=$(this);
+                           var files = evt.target.files; 
+                        
+                          for (var i = 0, f; f = files[i]; i++) {
+                          
+                          if (!f.type.match('image.*')) {
+                          continue;
+                          }
+                          var reader = new FileReader();
+                         
+                          reader.onload = (function(theFile) {
+                          return function(e) {
+                         
+                          $(th).parent().next().html("<img src='"+e.target.result+"' style='width:200px' />")
+                         
+                          };
+                          })(f);
+                          
+                          reader.readAsDataURL(f);
+                          }
+                    });
+
+
+                    }
+                    loadApp();
+          
+             });

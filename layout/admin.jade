@@ -1,0 +1,37 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    meta(name='description', content='CoreUI - Open Source Bootstrap Admin Template')
+    meta(name='author', content='Łukasz Holeczek')
+    meta(name='keyword', content='Bootstrap,Admin,Template,Open,Source,AngularJS,Angular,Angular2,Angular 2,Angular4,Angular 4,jQuery,CSS,HTML,RWD,Dashboard,React,React.js,Vue,Vue.js')
+    link(rel='shortcut icon', href='/public/hoangha/general/img/favicon.ico')
+    title HOANG HA COMPANY 
+    // Icons
+    link(href='/public/admin/css/font-awesome.min.css', rel='stylesheet')
+    link(href='/public/admin/css/simple-line-icons.css', rel='stylesheet')
+    // Main styles for this application
+    link(href='/public/admin/css/style.css', rel='stylesheet')
+    
+    script(src='/public/ckeditor/ckeditor.js')
+    script(src='/public/ckeditor/functions.js')
+  body.app.header-fixed.sidebar-fixed.aside-menu-fixed.aside-menu-hidden
+    include adminscript/header
+    include adminscript/sidebar
+    block admincontent
+    footer.app-footer
+      a(href='/public/admin/http://coreui.io') HOANG HA COMPANY 
+      |  © 2017 creativeLabs.
+      span.float-right
+        | Powered by 
+        a(href='/public/admin/img/coreui.io') HOANG HA COMPANY 
+    script(src='/public/bower_components/jquery/dist/jquery.min.js')
+    script(src='/public/bower_components/bootstrap/dist/js/bootstrap.min.js')
+    script(src='/public/bower_components/pace/pace.min.js')
+    script(src='/public/admin/js/app.js')
+    block scripts
+
+
+

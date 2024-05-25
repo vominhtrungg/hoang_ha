@@ -1,0 +1,42 @@
+block mycss
+  -if(stylepage)
+    link(rel='stylesheet', type='text/css', href='/public/hoangha/#{stylepage}/css/index.css')
+block myjs
+  -if(stylepage)
+    script(type='text/javascript', src='/public/hoangha/#{stylepage}/js/index.js')
+extends ../../../layout/default
+block contents
+  
+    .content
+      .tabs-section
+       
+      -if(product_detail)
+        .content_product
+          .content-left       
+            #detail_slideshow.owl-carousel.owl-theme.tabs.detail_slideshow
+              .item
+                a(href='#product', title='#{product_detail.name}')
+                  img.owl-lazy(data-src='/public/upload/product/#{product_detail.picture}', alt='#{product_detail.name}')
+              -if(product_detail.multipicture)
+                each p in product_detail.multipicture
+                  .item
+                    a(href='#product', title='#{product_detail.name}')
+                      img.owl-lazy(data-src='/public/upload/product/#{p}', alt='#{product_detail.name} #{p}')
+                
+            #product_detail.duan
+              -if(load_product)
+                each pp in load_product
+                  -if(pp.cid_cate)
+                    .hinhanh
+                      a.boxlazy(href='/san-pham/#{pp.cid_cate.alias}/#{pp.alias}', title='#{pp.name}')
+                        img.image.lazyload(data-src='/public/upload/product/small/#{pp.picture}', src='/public/hoangha/general/img/loader.gif', alt='#{pp.name}')
+                      .overlay
+                        .text
+                          a(href='/san-pham/#{pp.cid_cate.alias}/#{pp.alias}', title='#{pp.name}')
+                            h3 #{pp.name}
+          .content-right
+            h1.title_detail(style="text-transform: uppercase;") CHI TIẾT SẢN PHẨM #{product_detail.cid_cate.name} 
+            article.infomation_product  !{product_detail.contents}
+       
+    // end content
+    .clear

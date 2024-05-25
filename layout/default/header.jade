@@ -1,0 +1,131 @@
+header.boxhead
+        .top
+          .container
+            .top-left
+            #header-top-right.top-right
+              ul.font-face
+                li
+                  img(src='/public/hoangha/general/img/icon-phone.png', alt='Hotline In ấn Hoàng Hà')
+                  a(href='tel:#{general.hotline}', title='Hotline In ấn Hoàng Hà')
+                    | #{general.hotline}
+                li
+                  img(src='/public/hoangha/general/img/icon-email.png')
+                  a(href='mailto:info@inanhoangha.com', target='_top')
+                    p #{general.email}
+                li(style='margin-left:3px')
+                  a(href='skype:#{general.skype}')
+                    img(src='/public/hoangha/general/img/icon-skype-top.png')
+                li(style='margin-left:3px')
+                  a(href='#{general.facebook}', target='_black')
+                    img(src='/public/hoangha/general/img/icon-facebook-top.png')
+                li(style='margin-left:3px')
+                  a(href='/#{i18n.__("LANG")}')
+                    -if(i18n.__("LANG")=='en')
+                      img(src='/public/hoangha/general/img/icon-lang.png')
+                    -else
+                      img(src='/public/hoangha/general/img/vn-lang.png')
+
+        .header
+          .container
+            .head-left
+              .logo
+                a.boxlazy(href='/', title='Trang chủ In ấn Hoàng Hà')
+                  img.lazyload(data-src='/public/hoangha/general/img/logo-hh.png', src='/public/hoangha/general/img/loader.gif', alt='Logo In ấn Hoàng Hà')
+            .app
+              ul
+                li(style='padding-top: 5px')
+                  -if(stylepage && stylepage=='job')
+                    a.hoveractive(href='/tuyen-dung', title='tuyển dụng')
+                     i.icon-job
+                  -else
+                    a(href='/tuyen-dung', title='tuyển dụng')
+                      i.icon-job
+                  
+                li
+                  -if(stylepage && stylepage=='contact')
+                    a.hoveractive(href='/lien-he', title='liên hệ')
+                      i.icon-contact
+                  -else
+                    a(href='/lien-he', title='liên hệ')
+                      i.icon-contact
+                  
+                li.boxsearch
+                  a(href='javascript:;', title='tìm kiếm')
+                    i.icon-search
+                  form.frm_search(action='/tu-khoa', method='post', role='form')
+                    .input_group
+                      input#keyword.input_frm_search(type='text', name='k', value='', placeholder='Nhập từ khóa cần tìm...')
+                      button.btn_searchfrm(type='submit')
+                        i.icon-search2
+            nav.menu
+              .handle
+                | Danh mục
+                i.menu_icon
+              ul.font-face.navigation
+                li
+                  -if(stylepage && stylepage=='home')
+                    a.activemenu(href='/') #{i18n.__("HOME")}
+                  -else
+                    a(href='/') #{i18n.__("HOME")}
+                li
+                  -if(stylepage && stylepage=='info')
+                    a.activemenu(href='/gioi-thieu') #{i18n.__("INFO")}
+                  -else
+                    a(href='/gioi-thieu')  #{i18n.__("INFO")}
+                  
+                li.hover_view_menu
+                  -if(stylepage && stylepage=='cate')
+                    a.activemenu(href='/san-pham')  #{i18n.__("PRODUCT")}
+                  -else
+                    a(href='/san-pham')  #{i18n.__("PRODUCT")}
+                  .menu_hover
+                    -if(menu_cate)
+                      ul
+                        each m in menu_cate
+                          li
+                            -if(m.alias=='catalogue')
+                              a(href="/#{m.alias}")
+                                | #{m.name}
+                            -else
+                              a(href="/san-pham/#{m.alias}")
+                                | #{m.name}
+
+                  
+                li.hover_view_menu
+                  -if(stylepage && stylepage=='design')
+                    a.activemenu(href='/thiet-ke') #{i18n.__("DESIGN")}
+                  -else
+                    a(href='/thiet-ke') #{i18n.__("DESIGN")}
+                  .menu_hover
+                    -if(menu_cate)
+                      ul
+                        each m in design
+                          li
+                            -if(m.alias=='catalogue')
+                              a(href="/#{m.alias}")
+                                | #{m.name}
+                            -else
+                              a(href="/thiet-ke/#{m.alias}")
+                                | #{m.name}
+                  
+                li
+                  -if(stylepage && stylepage=='printer')
+                    a.activemenu(href='/in-gia-cong-offset') #{i18n.__("PRINTER")} 
+                  -else
+                    a(href='/in-gia-cong-offset')   #{i18n.__("PRINTER")} 
+                li
+                  -if(stylepage && stylepage=='news')
+                    a.activemenu(href='/tin-tuc') #{i18n.__("NEWS")} 
+                  -else
+                    a(href='/tin-tuc')   #{i18n.__("NEWS")} 
+                  
+        // end header
+-if(slideshow)
+        .slider
+              #boxslide.slideshow-container.owl-carousel.owl-theme
+                each slide in slideshow
+                  .item
+                    a(href='#{slide.links}', title='#{slide.name}')
+                      img.owl-lazy(data-src='/public/upload/slideshow/#{slide.picture}', alt='#{slide.name}')
+               
+          // end slider
