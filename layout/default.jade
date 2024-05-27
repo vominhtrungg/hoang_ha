@@ -1,14 +1,16 @@
 doctype html
 html
   head
-    title #{ (seo_title) ? seo_title : " In ấn - Quảng cáo Hoàng Hà | Thiết kế, in gia công uy tín "} 
+    title #{ (seo_title) ? seo_title+" -  In ấn - Quảng cáo Hoàng Hà" : " In ấn - Quảng cáo Hoàng Hà | Thiết kế, in gia công uy tín "} 
     meta(http-equiv='content-type', content='text/html; charset=utf-8')
     meta(name='author', content=' Công ty TNHH Quảng Cáo Hoàng Hà ')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     meta(name='description', content=' #{ (seo_description) ? seo_description : "Công ty quảng cáo Hoàng Hà chuyên thiết kế, in ấn, lịch, name card, brochure, catalogue, bao bì, poster, thiệp mời , in gia công với giá rẻ nhiều chương trình khuyến mãi, hậu mãi"} ')
     meta(name='keywords', content='quảng cáo, in ấn Hoàng Hà, name card, thiết kế, in gia công, brochure, lịch, poster ')
     meta(content='noodp,noydir', name='robots')
-    link(type='image/x-icon', rel='Shortcut Icon', href='/public/hoangha/general/img/favicon.ico')
+    meta(property='og:url', content='#{ (seo_image) ? seo_image : "/public/hoangha/general/img/favicon.ico" }')
+    meta(property='og:image', content='#{ (seo_image) ? seo_image : "/public/hoangha/general/img/favicon.ico" }')
+    link(type='image/x-icon', rel='icon', href='/public/hoangha/general/img/favicon.ico')
     link(rel='stylesheet', type='text/css', href='/public/hoangha/general/css/owl.carousel.min.css')
     link(rel='stylesheet', type='text/css', href='/public/hoangha/general/css/style.css')
     block mycss

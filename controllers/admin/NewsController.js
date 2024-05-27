@@ -155,8 +155,9 @@ exports.list=function(req,res){
 	View.currentPage= (req.query.page) ? parseInt(req.query.page) : 1;
 	
 	var sql={};
-
-
+	if(req.query.search){
+		sql = {name: req.query.search};
+	}
 	/*
 	var myDate=new Date();
 	res.send(Date.create().format('{dd}/{MM}/{yyyy} {hh}:{mm}:{ss}.{fff}').toString());

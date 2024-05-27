@@ -78,6 +78,7 @@ exports.detaildesign=function(req,res){
 
 	var load_detail_design = TDesign.findOne({alias: req.params.alias}).exec(function(err,data){
 		View.design_detail=data;
+		View.seo_title += data.name;
 	});
 	TPromise.push(load_detail_design);
 

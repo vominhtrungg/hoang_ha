@@ -65,27 +65,27 @@ exports.product=function(req,res){
 				
 				var load_cate = TCate.find({status:true}).sort({"name":-1}).exec(function(err,data){
 					View.cate= data;
-					View.seo_title=data.name;
-					View.seo_description=data.name;
+					// View.seo_title=data.name;
+					// View.seo_description=data.name;
 				
 				});
 				TPromise.push(load_cate);
 
 				if(req.params.product){
 					var detail_product=TProduct.findOne({status:true,alias:req.params.product,cid_cate:MyCate._id}).populate({path:"cid_cate"}).sort({"updated_at":-1}).exec(function(err,data){
-						
 							View.product_detail=data;
-							
+							View.seo_description=data.description;
+							View.product_detail=data;
+							View.seo_image= `/public/upload/product/${data.multipicture[0]}`;
 					});
 				}else{
 					
 						var detail_product=TProduct.findOne({status:true,cid_cate:MyCate._id}).populate({path:"cid_cate"}).sort({"updated_at":-1}).exec(function(err,data){
-						
+							View.seo_title=data.name;
+							View.seo_description=data.description;
 							View.product_detail=data;
-							
+							View.seo_image= `/public/upload/product/${data.multipicture[0]}`;
 						});
-					
-					
 				}
 				
 				TPromise.push(detail_product);
@@ -139,7 +139,7 @@ exports.detail=function(req,res){
 				View.seo_title=data.name;
 				View.seo_description=data.name;
 		});
-
+		
 		var load_other_product=TProduct.find({status:true, alias:{$ne : req.params.product}}).populate({path:"cid_cate",match:{alias:req.params.cate},select:"alias"}).exec(function(err,data){
 				View.other_product=data;
 				

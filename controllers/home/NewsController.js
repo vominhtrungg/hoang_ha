@@ -30,7 +30,7 @@ exports.index=function(req,res){
 		
 	});
 	TPromise.push(load_news_header);
-	var load_news = TNews.find({status:true,cid_cate:3}).sort({"name":-1}).exec(function(err,data){
+	var load_news = TNews.find({status:true,cid_cate:3}).sort({created_at: -1}).exec(function(err,data){
 			View.news= data;
 		
 	});
@@ -60,14 +60,13 @@ exports.index=function(req,res){
 
 	
 
-	var load_promotion = TNews.find({status:true,cid_cate:1}).sort({"name":-1}).exec(function(err,data){
+	var load_promotion = TNews.find({status:true,cid_cate:1}).sort({created_at: -1}).exec(function(err,data){
 			View.news_km= data;
-		
 	});
 	TPromise.push(load_promotion);
 	
 
-	var load_tt = TNews.find({status:true,cid_cate:2}).sort({"name":-1}).exec(function(err,data){
+	var load_tt = TNews.find({status:true,cid_cate:2}).sort({created_at: 1}).exec(function(err,data){
 			View.news_tt= data;
 		
 	});

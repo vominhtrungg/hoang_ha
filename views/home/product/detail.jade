@@ -27,7 +27,7 @@ block contents
           each p in product.multipicture
             .item
               a(href='#product', title='#{product.name}')
-                img.owl-lazy(data-src='/public/upload/product/#{p}', alt='#{product.name} #{p}')
+                img.owl-lazy(data-src='/public/upload/product/#{p}', alt='#{product.name}')
           
       #product.duan
         -if(other_product)
