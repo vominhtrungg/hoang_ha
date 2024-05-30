@@ -92,8 +92,6 @@ exports.edit=function(req,res){
 
 						if(req.method=="POST"){
 
-							console.log(req.method);
-
 										if(empty(req.body.name)){
 											View.error.name = " Vui lòng nhập tên Catalogue ";
 										}
@@ -103,12 +101,12 @@ exports.edit=function(req,res){
 											DNews.name=req.body.name;
 											DNews.alias=My_Data.toAlias(DNews.name);
 										
-											if(!empty(req.files?.picture?.name)){	
+											if(!empty(req.files.picture?.name)){	
 												var  name_picture=My_Data.md5("picture_"+(new Date()).toString())+".png";
 												My_Data.uploadFileCatalogue(req.files.picture,name_picture,UPLOAD_PATH,"/public/upload/news/");
 												DNews.picture=name_picture;
 											}
-											if(!empty(req.files?.picturetitle?.name)){
+											if(!empty(req.files.picturetitle?.name)){
 												var  name_picture_title=My_Data.md5("picture_main_"+(new Date()).toString())+".png";
 												My_Data.uploadFileCatalogue(req.files.picturetitle,name_picture_title,UPLOAD_PATH,"/public/upload/news/");
 												DNews.picture_main=name_picture_title;
