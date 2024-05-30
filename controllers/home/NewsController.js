@@ -27,7 +27,7 @@ exports.index=function(req,res){
 	
 	var load_news_header = TNews.findOne({is_home:true,status:true}).exec(function(err,data){
 			View.news_header= data;
-		
+			View.seo_image = `/public/upload/news/${data.picture_main}`;
 	});
 	TPromise.push(load_news_header);
 	var load_news = TNews.find({status:true,cid_cate:3}).sort({created_at: -1}).exec(function(err,data){
@@ -104,6 +104,7 @@ exports.detail=function(req,res){
 
 				View.my_date=My_Data.formatDate(data.created_at);
 				View.news=data;
+				View.seo_image = `/public/upload/news/${data.picture_main}`;
 				View.seo_title=data.name;
 				View.seo_description=data.name;
 
