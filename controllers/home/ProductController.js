@@ -65,7 +65,7 @@ exports.product=function(req,res){
 				
 				var load_cate = TCate.find({status:true}).sort({"name":-1}).exec(function(err,data){
 					View.cate= data;
-				
+					
 				});
 				TPromise.push(load_cate);
 				if(!req.params.product){
@@ -85,7 +85,7 @@ exports.product=function(req,res){
 							View.seo_title=MyCate.name;
 							// View.seo_description=data.description;
 							View.product_detail=data;
-							View.seo_image= `/public/upload/product/${MyCate.picture}`;
+							View.seo_image= `/public/upload/cate/${MyCate.picture}`;
 						});
 				}
 				
