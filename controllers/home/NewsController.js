@@ -27,7 +27,7 @@ exports.index=function(req,res){
 	
 	var load_news_header = TNews.findOne({is_home:true,status:true}).exec(function(err,data){
 			View.news_header= data;
-			View.seo_image = `/public/upload/news/${data.picture_main}`;
+			data.picture_main ? View.seo_image = `/public/upload/news/${data.picture_main}`: '';
 			View.seo_url = `https://inanhoangha.com/tin-tuc/`;
 			View.seo_title = data.name;
 			View.seo_description = data.description;
@@ -108,7 +108,7 @@ exports.detail=function(req,res){
 
 				View.my_date=My_Data.formatDate(data.created_at);
 				View.news=data;
-				View.seo_image = `/public/upload/news/${data.picture_main}`;
+				data.picture_main ? View.seo_image = `/public/upload/news/${data.picture_main}` : '';
 				View.seo_url = `https://inanhoangha.com/tin-tuc/${data.alias}`;
 				View.seo_title=data.name;
 				View.seo_description=data.description;
