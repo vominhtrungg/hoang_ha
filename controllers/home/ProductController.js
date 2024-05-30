@@ -75,8 +75,9 @@ exports.product=function(req,res){
 					var detail_product=TProduct.findOne({status:true,alias:req.params.product,cid_cate:MyCate._id}).populate({path:"cid_cate"}).sort({"updated_at":-1}).exec(function(err,data){
 							View.product_detail=data;
 							View.seo_description=data.description;
-							View.product_detail=data;
 							View.seo_image= `/public/upload/product/${data.multipicture[0]}`;
+							View.seo_url = `https://inanhoangha.com/san-pham/${data.alias}`;
+							View.seo_title = data.name;
 					});
 				}else{
 					
@@ -85,6 +86,7 @@ exports.product=function(req,res){
 							View.seo_description=data.description;
 							View.product_detail=data;
 							View.seo_image= `/public/upload/product/${data.multipicture[0]}`;
+							View.seo_url = `https://inanhoangha.com/san-pham/${data.alias}`;
 						});
 				}
 				
