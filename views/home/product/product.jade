@@ -26,6 +26,31 @@ block contents
           .content-right
             h1.title_detail(style="text-transform: uppercase;") CHI TIẾT SẢN PHẨM #{product_detail.cid_cate.name} 
             article.infomation_product  !{product_detail.contents}
+            .gr-contact
+              .box-btn
+                a.contact-btn(href='javascript:;') Liên hệ báo giá
+                a(href='tel:0979128712')
+                  span
+                    img(src='https://inanhoangha.com/public/hoangha/general/img/c1.png' width='30')
+                  | 0979 128 712
+            .custom-model-main
+              .custom-model-inner
+                .close-btn ×
+                .custom-model-wrap
+                  .pop-up-content-wrap
+                    .form-bao-gia
+                      form#frmQuote
+                        .gr-input
+                          input.vuta-input(type='text' placeholder='Tên (*)' name='name')
+                        .gr-input
+                          input.vuta-input(type='text' placeholder='Số điện thoại (*)' name='phone')
+                        .gr-input
+                          input.vuta-input(type='number' placeholder='Số lượng (*)' name='quantity')
+                        .gr-input
+                          textarea.vuta-input(placeholder='Ghi chú' name='note')
+                        .box-btn
+                          button#quoteSubmit.submit(type='submit') Nhận báo giá 
+              .bg-overlay
           #product_detail.duan
               -if(load_product)
                 each pp in load_product
