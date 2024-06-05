@@ -32,7 +32,8 @@ jQuery(document).ready(function($) {
         $(".custom-model-main").removeClass('model-open');
     });
     
-    $( ".form-bao-gia" ).on( "submit", function( event ) {
+    $( "#frmQuote" ).on( "submit", function( event ) {
+
         event.preventDefault();
         const formEvent = event.target;
         let formData = new FormData();
@@ -54,9 +55,10 @@ jQuery(document).ready(function($) {
             alert('Bạn chưa nhập Số lượng!');
             return false;
         }
+        console.log($( "#frmQuote" ).attr('title'));
         formData.append("description", formEvent.note.value);
+        formData.append("productName", $( "#frmQuote" ).attr('title'));
         var url = "/api/contacts";
-
         $.ajax({
             type: 'POST',
             url: url,

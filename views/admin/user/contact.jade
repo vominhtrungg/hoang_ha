@@ -38,7 +38,7 @@ block admincontent
                         tr
                           td #{ln.name}
                           td #{ln.email}
-                          td #{(ln.quantity) ? 'Số lượng: ' + ln.quantity : ''} <br/> #{ln.description}
+                          td #{(ln.productName) ? 'Sản phẩm:  ' + ln.productName : ''} <br/>  #{(ln.quantity) ? 'Số lượng: ' + ln.quantity : ''} <br/> #{ln.description}
                           td #{ln.created_at}
                            
                         
