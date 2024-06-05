@@ -28,7 +28,7 @@ block admincontent
                   thead
                     tr
                       th Tên 
-                      th Email
+                      th Email hoặc số điện thoại
                       th Mô tả 
                       th Ngày liên hệ 
                       th Tuỳ chọn 
@@ -38,7 +38,7 @@ block admincontent
                         tr
                           td #{ln.name}
                           td #{ln.email}
-                          td #{ln.description}
+                          td #{(ln.quantity) ? 'Số lượng: ' + ln.quantity : ''} <br/> #{ln.description}
                           td #{ln.created_at}
                            
                         

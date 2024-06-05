@@ -5,12 +5,14 @@ var Initcontact=new Schema({
 	name:{
 		type:String,
 		required:true,
-		unique:true
+		// unique:true
 	},
 	email:String,
-	
+	quantity:{
+		type:Number,
+		default: 0
+	},
 	description:String,
-	
 	created_at:Date,
 	updated_at:Date
 });

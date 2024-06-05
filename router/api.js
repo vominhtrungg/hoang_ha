@@ -53,6 +53,7 @@ router.get("/slideshow",isAuthenticated,function(req,res){
 router.all("/supplier",isAuthenticated,function(req,res){
   controllers.ApiController.supplier(req,res);
 });
+router.all("/contacts", multipartMiddleware, controllers.ApiController.contacts);
 
 
 function isAuthenticated(req,res,next){

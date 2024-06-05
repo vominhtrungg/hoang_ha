@@ -6,6 +6,7 @@ var Q= require("q");
 var fs=require("fs");
 var TPromise=[];
 var My_Data=require("../../library/Data");
+const GContact =require("../../models/Contact");
 
 
 const TCate= require("../../models/Categories");
@@ -57,4 +58,37 @@ exports.general=function(req,res){
 	Q.all(TPromise).done(function(){
 		res.json(View.general);
 	});
+}
+exports.contacts =  function(req,res){
+	const {email, quantity, name, description} = req.body;
+	console.log(req.body);
+	try {
+		const global = new GContact();
+		if(!email){
+			return res.json({error: true, message: 'Chưa nhập Email hoặc số điện thoại!'})
+		}
+		if(!name){
+			return res.json({error: true, message: 'Chưa nhập Tên!'})
+		}
+		if(!quantity){
+			return res.json({error: true, message: 'Chưa nhập Số lượng!'})
+		}
+		// if(!description){
+		// 	return res.json({error: true, message: 'Chưa nhập Nội dung!'})
+		// }
+		global.email = email;
+		global.quantity = quantity;
+		global.name = name;
+		global.description = description;
+
+		global.save();
+
+		
+		Q.all(TPromise).done(function(){
+			return res.json({error: false, message: 'Gửi thông tin thành công! chúng tôi sẽ liện hệ với bạn trong thời gian sớm nhất'});
+		});
+	} catch (error) {
+		console.log(error);
+		return res.json({error: false, message: 'Lỗi server! vui lòng liên hệ đội ngũ dev để được hỗ trợ'});
+	}
 }

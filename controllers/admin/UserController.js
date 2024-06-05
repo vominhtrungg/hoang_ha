@@ -33,6 +33,7 @@ exports.contact=function(req,res){
 	        View.paginate=paginate;
 	        View.pages= paginate.getArrayPages(req)(3, data.pages, req.query.page);
 			View.list=data;
+			// console.log();
 		
 	});
 	TPromise.push(list);
