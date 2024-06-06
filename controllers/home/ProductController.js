@@ -69,8 +69,10 @@ exports.product=function(req,res){
 				});
 				TPromise.push(load_cate);
 				if(!req.params.product){
+					View.checkProduct = '';
 					View.seo_url = `https://inanhoangha.com/san-pham/${req.params.alias}`;
 				}else{
+					View.checkProduct = req.params.product;
 					View.seo_url = `https://inanhoangha.com/san-pham/${req.params.alias}/${req.params.product}`;
 				}
 				if(req.params.product){
