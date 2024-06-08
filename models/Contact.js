@@ -5,7 +5,7 @@ var Initcontact=new Schema({
 	name:{
 		type:String,
 		required:true,
-		// unique:true
+		unique:false
 	},
 	productName: String,
 	email:String,

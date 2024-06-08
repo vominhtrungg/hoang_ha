@@ -39,7 +39,7 @@ block contents
                 .custom-model-wrap
                   .pop-up-content-wrap
                     .form-bao-gia
-                      form(id="frmQuote", title='#{product_detail.name}')
+                      form(id="frmQuote", title='#{ checkProduct ? product_detail.name : product_detail.cid_cate.name }')
                         .gr-input
                           input.vuta-input(type='text' placeholder='Tên (*)' name='name')
                         .gr-input

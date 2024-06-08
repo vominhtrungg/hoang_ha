@@ -61,7 +61,6 @@ exports.general=function(req,res){
 }
 exports.contacts =  function(req,res){
 	const {email, quantity, name, description, productName} = req.body;
-	console.log(req.body);
 	try {
 		const global = new GContact();
 		if(!email){
@@ -81,6 +80,7 @@ exports.contacts =  function(req,res){
 		global.name = name;
 		global.description = description;
 		global.productName = productName;
+		console.log(req.body);
 
 		global.save();
 
