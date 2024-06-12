@@ -5,10 +5,13 @@ const TGeneral= require("../../models/General");
 var empty= require("is-empty");
 var md5= require("md5");
 var session=require("express-session");
+const TEmails= require("../../models/Emails");
+
 var Q= require("q");
+const { formatDateVie } = require("../../library/Data");
 var TPromise=[];
 require("./Global").Global(TPromise,View);
-exports.dashboard=function(req,res){
+exports.dashboard = async function(req,res){
 
 	require("./Global").Global(TPromise,View);
 	var get_general=TGeneral.findOne({},function(err,data){
@@ -19,6 +22,8 @@ exports.dashboard=function(req,res){
 			}
 			data.name=req.body.name;
 			data.email=req.body.email;
+			data.emailMain=req.body.emailMain;
+			data.emailMainKey=req.body.emailMainKey;
 			data.address=req.body.address;
 			data.hotline=req.body.hotline;
 			data.phone=req.body.phone;
@@ -34,9 +39,10 @@ exports.dashboard=function(req,res){
 		if(data){
 			View.data=data;
 		}
-
-		
 	});
+
+	const listEmails = await TEmails.find({})
+	View.listEmails = listEmails;
 
 	TPromise.push(get_general);
 	Q.all(TPromise).done(function(){

@@ -5,6 +5,8 @@ var InitGeneral=new Schema({
 	description:String,
 	phone:String,
 	email:String,
+	emailMain:String,
+	emailMainKey:String,
 	hotline:String,
 	address:String,
 	gc:String,

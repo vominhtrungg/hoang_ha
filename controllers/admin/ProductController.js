@@ -104,9 +104,7 @@ exports.edit=function(req,res){
 						if(!empty(req.files.picture.name)){
 							var  name_picture=My_Data.md5("product_"+(new Date()).toString())+".png";
 						    My_Data.uploadFile(req.files.picture,name_picture,UPLOAD_PATH,"/public/upload/product/");
-
 						    NProduct.picture=name_picture;
-
 					    }
 
 					    var my_multi_picture=[];

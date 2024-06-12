@@ -54,6 +54,9 @@ router.all("/supplier",isAuthenticated,function(req,res){
   controllers.ApiController.supplier(req,res);
 });
 router.all("/contacts", multipartMiddleware, controllers.ApiController.contacts);
+router.all("/create-email", multipartMiddleware, controllers.ApiController.createEmails);
+router.all("/delete-email/:id", multipartMiddleware, controllers.ApiController.deleteEmails);
+router.all("/showview-email/:id", multipartMiddleware, controllers.ApiController.showviewEmails);
 
 
 function isAuthenticated(req,res,next){

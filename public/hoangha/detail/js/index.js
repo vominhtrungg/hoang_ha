@@ -31,9 +31,9 @@ jQuery(document).ready(function($) {
     $(".close-btn, .bg-overlay").click(function() {
         $(".custom-model-main").removeClass('model-open');
     });
-    
+    let loadding = false
     $( "#frmQuote" ).on( "submit", function( event ) {
-
+        $('#quoteSubmit').attr('disabled',true)
         event.preventDefault();
         const formEvent = event.target;
         let formData = new FormData();
@@ -68,6 +68,7 @@ jQuery(document).ready(function($) {
             contentType: false,
             beforeSend: function() {},
             success: function(data) {
+                $('#quoteSubmit').attr('disabled',false)
                 data = JSON.parse(data);
                 if (!data.error) {
                     alert(data.message);

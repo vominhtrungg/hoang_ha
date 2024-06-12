@@ -68,6 +68,11 @@ block admincontent
             // /.col
 
         .row
+         .col-md-12
+            .card
+              .form-actions
+                      button.btn.btn-primary(type='submit') Save changes
+                      button.btn.btn-secondary(type='reset') Cancel    
           .col-md-6
             .card
               .card-header
@@ -179,6 +184,59 @@ block admincontent
                               | #{error.youtube}
           .col-md-12
             .card
-              .form-actions
-                      button.btn.btn-primary(type='submit') Save changes
-                      button.btn.btn-secondary(type='reset') Cancel       
+              .card-header
+                div.d-flex.justify-content-between
+                  div 
+                    i.fa.fa-edit.mr-1 
+                    | Danh sách email
+                  div 
+                    button.btn.btn-primary(type='button', title="Thêm email", data-toggle="modal", data-target="#FormEmail") 
+                       i.fa.fa-plus
+              .card-body
+                .w-100.d-flex.align-items-end.mb-3
+                  .form-group.mb-0.col.p-0
+                    label.col-form-label(for="emails") Email gửi: 
+                    input.form-control#EmailMain(type="email",name="emailMain", placeholder="Nhập email...", value='#{data && data.emailMain? data.emailMain : ""}')
+                  .form-group.mb-0.col.p-0.ml-3
+                    label.col-form-label(for="emails") Key kết nối email: 
+                    input.form-control#EmailMainKey(type="text",name="emailMainKey", placeholder="Nhập Key...",  value='#{data && data.emailMainKey? data.emailMainKey : ""}')
+                  button.btn.btn-primary.ml-3(type="submit", style="height: fit-content;") Xác nhận 
+                table.table.table-bordered.table-striped.table-condensed
+                  thead
+                    tr
+                      th Email 
+                      th Thời gian tạo 
+                      th Bật/Tắt 
+                      th Thao tác 
+                  tbody
+                    if(listEmails)
+                      each item in listEmails
+                        tr 
+                          td #{item.name}
+                          td #{item.created_at}
+                          td 
+                            label.switch
+                              if(item.showView == 1)
+                                input(type="checkbox",data-target="#{item.id}",checked, onchange="changeEmails(this)")
+                                span.slider.round
+                              else 
+                                input(type="checkbox",data-target="#{item.id}", onchange="changeEmails(this)")
+                                span.slider.round
+                          td 
+                            a.btn.btn-danger(href="javascript:void(0)", title="Xoá", onclick="removeEmails('#{item.id}')")
+                              i.fa.fa-trash
+
+  div.modal.fade(id="FormEmail", tabindex="-1", aria-labelledby="FormEmailLabel", aria-hidden="true")
+    .modal-dialog.modal-dialog-centered
+      .modal-content.w-100
+        .modal-header
+          h5.modal-title#FormEmailLabel Thêm mới email
+        .modal-body 
+          form
+            .form-group
+              label.col-form-label(for="emails") Email: 
+              input.form-control#EmailField(type="email", placeholder="Nhập email...")
+        .modal-footer
+          button.btn.btn-secondary(data-dismiss="modal") Đóng
+          button.btn.btn-primary(onClick="addEmails()") Xác nhận 
+

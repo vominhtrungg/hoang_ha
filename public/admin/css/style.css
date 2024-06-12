@@ -1762,7 +1762,8 @@ input[type="button"].btn-block {
   transition: opacity 0.15s linear; }
   .fade.show {
     opacity: 1; }
-
+  .fade.in {
+    opacity: 1; }
 .collapse {
   display: none; }
   .collapse.show {
@@ -3125,12 +3126,20 @@ button.close {
   outline: 0; }
   .modal.fade .modal-dialog {
     transition: transform 0.3s ease-out;
-    transform: translate(0, -25%); }
+    /* transform: translate(0, -25%);  */
+  }
   .modal.show .modal-dialog {
     transform: translate(0, 0); }
-
+    .modal-dialog-centered {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-align: center;
+      align-items: center;
+      min-height: calc(100% - 1rem);
+  }
 .modal-open .modal {
   overflow-x: hidden;
+  background-color: rgb(0 0 0 / 50%);
   overflow-y: auto; }
 
 .modal-dialog {
@@ -8737,4 +8746,64 @@ hr.transparent {
     font-size:14px;
     color:red;
     display: inline-block;
+  }
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    transform: scale(0.8);
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
   }
