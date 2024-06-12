@@ -378,9 +378,9 @@ exports.sendMails = async (data) => {
 			const info = await transporter.sendMail({
 				from: '"Quảng cáo Hoàng Hà" <chauc800@gmail.com>', // sender address
 				to: listEmails, // list of receivers
-				subject: `${data.name} gửi thông tin liên hệ`, // Subject line
+				subject: `${data.name} cần liên hệ báo giá ở website`, // Subject line
 				html: `<div>
-					email: ${data.email}
+					SĐT: ${data.email}
 					<br/>
 					Tên: ${data.name}
 					<br/>
